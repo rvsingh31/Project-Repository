@@ -21,15 +21,7 @@
 </head>
 <body class="blue darken-1">
     
-     <!--  <nav class="yellow lighten-1">
-           <ul>
-                    <li class="left"><a href="#!"><asp:Label ID="i_lbl" class="blue-text text-darken-2" runat="server" Text="Easy Travel"></asp:Label></a></li> 
-               <li class="right"><a href="#!"><asp:Label ID="u_lbl" class="blue-text text-darken-2" runat="server" Text=""></asp:Label></a></li>
-           </ul>
-       </nav>
-
-    -->
-   <nav class="white">
+  <nav class="white">
     <div class="nav-wrapper">
 		<ul class="left">
 			<li><a href="#" class="purple-text ">Easy travel</a></li>
@@ -41,11 +33,11 @@
         <h5 class="teal-text">Easy-Travel</h5>
        </li>
            <li><br /></li>
-           <li class="center"><a class=" blue-text text-darken-1" href="#!">NAME</a></li>
-        <li class="active"><a class="home blue-text text-darken-1" href="#!">Home</a></li>
-		<li><a  class=" search blue-text text-darken-1"  href="#!">Search Packages</a></li>
-        <li><a  class="star blue-text text-darken-1" href="#!">Starred Places</a></li>
-        <li><a  class="account blue-text text-darken-1" href="#!">Account Settings</a></li>
+           <li class="center"><a class=" blue-text text-darken-1" href="#!"><%=vtr %></a></li>
+            <li class="active li_home"><a class="home blue-text text-darken-1" href="#!">Home</a></li>
+		<li class="li_search"> <a  class=" search blue-text text-darken-1"  href="#!">Search Packages</a></li>
+        <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">Starred Places</a></li>
+        <li class="li_account"><a  class="account blue-text text-darken-1" href="#!">Account Settings</a></li>
 		<li><a  class="blue-text text-darken-1" href="#!">Sign Out</a></li>
     </ul>
 	
@@ -55,11 +47,11 @@
         <h5 class="teal-text">Easy-Travel</h5>
        </li>
            <li><br /></li>
-           <li class="center"><a class="blue-text text-darken-1" href="#!">NAME</a></li>
-        <li class="active"><a  class="home blue-text text-darken-1" href="#!">Home</a></li>
-		<li><a  class="search blue-text text-darken-1"  href="#!">Search Packages</a></li>
-        <li><a  class="star blue-text text-darken-1" href="#!">Starred Places</a></li>
-        <li><a  class=" account blue-text text-darken-1" href="#!">Account Settings</a></li>
+           <li class="center"><a class="blue-text text-darken-1" href="#!"><%=vtr %></a></li>
+        <li class="active li_home"><a  class="home blue-text text-darken-1" href="#!">Home</a></li>
+		<li class="li_search"><a  class="search blue-text text-darken-1"  href="#!">Search Packages</a></li>
+        <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">Starred Places</a></li>
+        <li class="li_account"><a  class=" account blue-text text-darken-1" href="#!">Account Settings</a></li>
 		<li><a  class="blue-text text-darken-1" href="#!">Sign Out</a></li>
     
 	</ul>
@@ -74,8 +66,68 @@
                             <h5 class="yellow-text header light">Best Deals for you!!</h5>
                 </div>
                 <div id="account" style="display:none">
-                      <h6 class="yellow-text">Edit Your Profile</h6>
-                      
+                          <h5 class="yellow-text header light">Edit your Profile</h5>
+                            <br />   
+                            <div class="row">
+                                <div class="col s12 m5 card ">
+                                    <br />
+                                    <div>
+                                        <span class="blue-text text-darken-1">Name : <span class="teal-text"><%=ar[0] %></span></span>
+                                        &nbsp;
+                                        <button id="ch_name_btn" class="btn right waves-effect waves-light yellow blue-text text-darken-1">Change</button>
+                                        <br />
+                                    </div>
+                                    <div>
+                                        <br />
+                                        <span class="blue-text text-darken-1">UserName : <span class="teal-text"><%=ar[1] %></span></span>
+                                        &nbsp;
+                                        <button id="ch_username_btn" class="btn right  waves-effect waves-light yellow blue-text text-darken-1">Change</button>
+                                        <br />
+                                    </div>
+                                    <div>
+                                        <br />
+                                        <span class="blue-text text-darken-1">Password : <span class="teal-text"><%=ar[2] %></span></span>
+                                        &nbsp;
+                                        <button id="ch_password_btn" class="btn right  waves-effect waves-light yellow blue-text text-darken-1">Change</button>
+                                        <br />
+                                    </div>
+                                    <div>
+                                        <br />
+                                        <span class="blue-text text-darken-1">Contact : <span class="teal-text"><%=ar[3] %></span></span>
+                                        &nbsp;
+                                        <button id="ch_contact_btn" class="btn right  waves-effect waves-light yellow blue-text text-darken-1">Change</button>
+                                           <br />
+                                    </div>
+                                    <div>
+                                        <br />
+                                        <span class="blue-text text-darken-1">Mail : <span class="teal-text"><%=ar[4] %></span></span>
+                                        &nbsp;
+                                        <button id="ch_mail_btn" class="btn right  waves-effect waves-light yellow blue-text text-darken-1">Change</button>
+                                    
+                                    </div>
+
+                                    <br />
+                                </div>
+                                <div class="col s12 m1"><p></p></div>
+                            
+                                <div class="col s12 m6 card-panel yellow change_div" style="display:none">
+                                    <div class="name_div" style="display:none">
+                                        
+                                    </div>
+                                    <div class="username_div" style="display:none">
+
+                                    </div>
+                                    <div class="password_div" style="display:none">
+
+                                    </div>
+                                    <div class="contact_div" style="display:none">
+
+                                    </div>
+                                    <div class="mail_div" style="display:none">
+
+                                    </div>
+                                </div> 
+                            </div>      
                 </div>
                 <div id="search" style="display:none">
                       <h6 class="yellow-text">Search Packages </h6>
@@ -104,6 +156,7 @@
           //  alert("in");
             clear_area();
             setTimeout(function () {
+                $(".li_home").addClass('active');
                 $("#home").fadeIn();
             },400);
         });
@@ -111,6 +164,7 @@
         $(document).on('click', '.star', function () {
             clear_area();
             setTimeout(function () {
+                $(".li_star").addClass('active');
                 $("#star").fadeIn();
             }, 400);
         });
@@ -118,6 +172,7 @@
         $(document).on('click', '.search', function () {
             clear_area();
             setTimeout(function () {
+                $(".li_search").addClass('active');
                 $("#search").fadeIn();
             }, 400);
         });
@@ -125,6 +180,7 @@
         $(document).on('click', '.account', function () {
             clear_area();
             setTimeout(function () {
+                $(".li_account").addClass('active');
                 $("#account").fadeIn();
             }, 400);
         });
@@ -134,15 +190,19 @@
             $(document).ready(function () {
 
                 if ($("#home").is(':visible')) {
+                    $(".li_home").removeClass('active');
                     $("#home").fadeOut();
                 }
                 else if ($("#account").is(':visible')) {
+                    $(".li_account").removeClass('active');
                     $("#account").fadeOut();
                 }
                 else if ($("#search").is(':visible')) {
+                    $(".li_search").removeClass('active');
                     $("#search").fadeOut();
                 }
                 else if ($("#star").is(':visible')) {
+                    $(".li_star").removeClass('active');
                     $("#star").fadeOut();
                 }
                

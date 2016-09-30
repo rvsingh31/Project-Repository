@@ -11,23 +11,5 @@ namespace WebApplication2 {
     
     
     public partial class WebForm2 {
-        
-        /// <summary>
-        /// i_lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label i_lbl;
-        
-        /// <summary>
-        /// u_lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label u_lbl;
     }
 }

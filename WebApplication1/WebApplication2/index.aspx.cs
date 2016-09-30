@@ -37,7 +37,7 @@ namespace WebApplication2
             string username = uname.Text;
             string password = passwd.Text;
 
-            string constr = WebConfigurationManager.ConnectionStrings["db1"].ConnectionString;
+            string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
 
             SqlConnection conn = new SqlConnection(constr);
 
@@ -76,7 +76,7 @@ namespace WebApplication2
             string r_contact = contact.Text;
             string r_mail = mail.Text;
 
-            string constr = WebConfigurationManager.ConnectionStrings["db1"].ConnectionString;
+            string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
 
             SqlConnection conn = new SqlConnection(constr);
 

@@ -43,7 +43,7 @@ namespace WebApplication2.agency
             }
 
             int i = Int32.Parse(Session["id"].ToString());
-            string constr = WebConfigurationManager.ConnectionStrings["db1"].ConnectionString;
+            string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
 
             SqlConnection conn = new SqlConnection(constr);
 
@@ -256,7 +256,7 @@ namespace WebApplication2.agency
             string f4 =a_contact.Text;
             string f5 = Session["id"].ToString();
 
-            string constr = WebConfigurationManager.ConnectionStrings["db1"].ConnectionString;
+            string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
 
             SqlConnection conn = new SqlConnection(constr);
 
