@@ -9,12 +9,15 @@ using Connect;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+
+
 namespace WebApplication2
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
         public string vtr;
         public ArrayList ar;
+        public string msg;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -27,10 +30,11 @@ namespace WebApplication2
                 Response.Redirect("index.aspx?msg=Log in to Continue..");
             }
 
+            msg=Request.QueryString["m"];
             ConnectClass cc = new ConnectClass();
             cc.setConnection();
-            cc.setCommand("select * from users where username = @e");
-            cc.setParameter("@e",vtr);
+            cc.setCommand("select * from users where id = @e");
+            cc.setParameter("@e",Session["id"].ToString());
             cc.openConnection();
             SqlDataReader rdr = cc.getDDLResults();
             rdr.Read();
@@ -48,6 +52,64 @@ namespace WebApplication2
             ar.Add(sb);
             ar.Add(rdr["contact"].ToString());
             ar.Add(rdr["email"].ToString());
+        }
+
+        protected void Changes(object sender,CommandEventArgs e)
+        {
+            ConnectClass cc = new ConnectClass();
+            cc.setConnection();
+            string v1, v2;
+           if(e.CommandArgument.ToString()=="name")
+            {
+                v1 = fname_input.Text;
+                v2 = lname_input.Text;
+                cc.setCommand("update users set firstname=@v1 ,lastname=@v2 where id=@id");
+                cc.setParameter("@v1",v1);
+                cc.setParameter("@v2",v2);
+                cc.setParameter("@id", Session["id"].ToString());
+            }
+           else if (e.CommandArgument.ToString() == "username")
+            {
+                v1 = username_input.Text;
+                cc.setCommand("update users set username=@v1 where id=@id");
+                cc.setParameter("@v1", v1);
+                cc.setParameter("@id", Session["id"].ToString());
+
+            }
+            else if (e.CommandArgument.ToString() == "password")
+            {
+                v1 = password_input.Text;
+                cc.setCommand("update users set password=@v1 where id=@id");
+                cc.setParameter("@v1", v1);
+                cc.setParameter("@id", Session["id"].ToString());
+
+            }
+            else if (e.CommandArgument.ToString() == "contact")
+            {
+                v1 = contact_input.Text;
+                cc.setCommand("update users set contact=@v1 where id=@id");
+                cc.setParameter("@v1", v1);
+                cc.setParameter("@id", Session["id"].ToString());
+
+            }
+            else if (e.CommandArgument.ToString() == "email")
+            {
+                v1 = email_input.Text;
+                cc.setCommand("update users set email=@v1 where id=@id");
+                cc.setParameter("@v1", v1);
+                cc.setParameter("@id", Session["id"].ToString());
+
+            }
+            cc.openConnection();
+
+            int a = cc.getDMLResults();
+            if(a>0)
+            {
+                Response.Redirect("home.aspx?m=Changes made successfully");
+            }
+            else
+            {
+                Response.Redirect("home.aspx?m=Error Occured!Try Again later!");            }
         }
 
     }

@@ -12,71 +12,98 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
         .change{
-            color:white;
+            color:yellow;
            opacity:1;
            text-decoration:none;
            cursor:pointer;
         }
         .change:hover{
             opacity:0.6;
-            color:blue;
+            color:white;
             transition:opacity 0.1s ease-in, color 0.2s linear;
             -webkit-transition:opacity 0.1s ease-in, color 0.2s linear; 
         }
 
  
+        
+@media (min-width: 991px) {
+    main {
+        padding-left: 120px;
+    }
+}
     </style>
+ 
 </head>
 <body class="blue lighten-4">
-    <nav class="blue lighten-1">
-        <div class="nav-wrapper">
-            <a href="#!" class="white-text">Easy Travel</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse white-text"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="a_home.aspx" class="white-text">Home</a></li>
-        <li><a href="#!" class="white-text"><%=Session["package_name"] %></a></li>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="a_home.aspx" class="blue-text">Home</a></li>
-        <li><a href="#!" class="blue-text"><%=Session["package_name"] %></a></li>
-      </ul>
+
+ 
+    <nav class="white">
+    <div class="nav-wrapper">
+		<ul class="right">
+			<li><a href="a_home.aspx" class="blue-text ">Home</a></li>
+            <li><a href="#" class="blue-text ">Easy travel</a></li>
+
+		</ul>
+		<a href="#" data-activates="mobile-demo" class="left button-collapse blue-text"><i class="material-icons">menu</i></a>
+      
+	   <ul  class="side-nav fixed blue darken-1 "> 
+       <li class="center">
+           <br />
+        <h6 class="yellow-text">Make Changes</h6>
+       </li>
+           <li><br /></li>
+           <li class="center"><a class=" yellow-text text-darken-1" href="#!"><%=Session["package_name"] %></a></li>
+           <li><br /></li>
+            <li class="active name_li"><a class="change name white-text">Name of Package</a></li>
+                 <li class="description_li"><a class="change white-text description">Description of Package</a></li>
+                 <li class="cost_li"><a class="change cost white-text">Cost of Package</a></li>
+                 <li class="duration_li"><a  class="change duration white-text">Package's Duration</a></li>
+                 <li class="limit_li"><a  class="change limit white-text">Limit of Customers</a></li>
+                 <li class="expiry_li"><a  class="change expiry white-text">Package's Expiration Date</a></li>
+                 <li class="location_li"><a  class="change location white-text">Location</a></li>
+                
+    </ul>
+	
+	 <ul id="mobile-demo" class="side-nav blue darken-1">
+    
+    <li class="center">
+        <h6 class="yellow-text">Make Changes</h6>
+       </li>
+           <li><br /></li>
+           <li class="center"><a class="blue-text text-darken-1" href="#!"><%=Session["package_name"] %></a></li>
+         <li><br /></li>
+               <li class="active name_li"><a class="change name white-text">Name of Package</a></li>
+                 <li class="description_li"><a  class="change description white-text">Description of Package</a></li>
+                 <li class="cost_li"><a  class="change cost white-text">Cost of Package</a></li>
+                 <li class="duration_li"><a  class="change duration white-text">Package's Duration</a></li>
+                 <li class="limit_li"><a  class="change limit white-text">Limit of Customers</a></li>
+                 <li class="expiry_li"><a  class="change expiry white-text">Package's Expiration Date</a></li>
+                 <li class="location_li"><a  class="change location white-text">Location</a></li>
+              
+    
+	</ul>
     </div>
   </nav>
 
-
+    <main>
+        <div class="container">
     <form id="form1" runat="server">
             <br />
         <br />
         <div class="row">
-            <div class="col s12 m2 red lighten-3 center" style="border-radius:1%">
-                <br />
-                  <h6 class="change name">Name of Package</h6>
-                  <br />
-                   <h6 class="change description">Description of Package</h6>
-                  <br />
-                 <h6 class="change cost">Cost of Package</h6>
-                  <br />
-                 <h6 class="change duration">Package's Duration</h6>
-                  <br />
-                 <h6 class="change limit">Limit of Customers</h6>
-                  <br />
-                 <h6 class="change expiry">Package's Expiration Date</h6>
-                  <br />
-                 <h6 class="change location">Location</h6>
-                  <br />
+            <div class="col s12 m2" style="border-radius:1%">
+               <p id="msg" style="display:none"><%=msg %></p>
             </div>
 
             <div class="col s12 m2">
                 <p></p>
             </div>
-            <div class="col s12 m8 red lighten-3" style="border-radius:1%;height:26em;overflow-y:auto;">
-                <div class="row">
-                    <div class="col s12 m5">
-                        <div class="white-text" id="name">
+            <div class="col s12 m8 blue darken-1" style="border-radius:1%;height:26em;overflow-y:auto;">
+                       <div class="white-text" id="name">
                             <h6 class="white-text center text-lighten-1">Change your Package name</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT NAME:</h6>
-                            <span class="teal-text"> <asp:Label ID="name_lbl" runat="server" Text=""></asp:Label></span>
+                            <span class="yellow-text"> <asp:Label ID="name_lbl" runat="server" Text=""></asp:Label></span>
                             <br />
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Name"></asp:Label>
@@ -93,7 +120,7 @@
                             <h6 class="white-text center text-lighten-1">Change your Package Description</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT DESCRIPTION:</h6>
-                            <span class="teal-text"> <asp:Label ID="desc_lbl" runat="server" Text=""></asp:Label></span>
+                            <span class="yellow-text"> <asp:Label ID="desc_lbl" runat="server" Text=""></asp:Label></span>
                             <br />
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Description"></asp:Label>
@@ -111,7 +138,7 @@
                             <h6 class="white-text center text-lighten-1">Change your Package Cost</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT COST:</h6>
-                            <span class="teal-text"> <asp:Label ID="cost_lbl" runat="server" Text=""></asp:Label></span>
+                            <span class="yellow-text"> <asp:Label ID="cost_lbl" runat="server" Text=""></asp:Label></span>
                             <br />
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Cost"></asp:Label>
@@ -137,7 +164,7 @@
                             <h6 class="white-text center text-lighten-1">Change your Package Duration</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT DURATION:</h6>
-                            <span class="teal-text"> <asp:Label ID="duration_lbl" runat="server" Text=""></asp:Label></span>
+                            <span class="yellow-text"> <asp:Label ID="duration_lbl" runat="server" Text=""></asp:Label></span>
                             <br />
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Duration"></asp:Label>
@@ -162,7 +189,7 @@
                         <h6 class="white-text center text-lighten-1">Change your Package Limit</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT LIMIT:</h6>
-                            <span class="teal-text"> <asp:Label ID="limit_lbl" runat="server" Text=""></asp:Label></span>
+                            <span class="yellow-text"> <asp:Label ID="limit_lbl" runat="server" Text=""></asp:Label></span>
                             <br />
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Limit"></asp:Label>
@@ -178,7 +205,7 @@
                             <h6 class="white-text center text-lighten-1">Change your Package Expiration Date</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT VALUE:</h6>
-                            <span class="teal-text">  <asp:Label ID="expiry_lbl" runat="server" Text=""></asp:Label></span>
+                            <span class="yellow-text">  <asp:Label ID="expiry_lbl" runat="server" Text=""></asp:Label></span>
                             <br />
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Date"></asp:Label>
@@ -195,7 +222,7 @@
                             <h6 class="white-text center text-lighten-1">Change your Package Location</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT Location:</h6>
-                            <span class="teal-text"> <asp:Label ID="location_lbl" runat="server" Text=""></asp:Label></span>
+                            <span class="yellow-text"> <asp:Label ID="location_lbl" runat="server" Text=""></asp:Label></span>
                             <br />
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Location"></asp:Label>
@@ -208,18 +235,14 @@
                             <br />                        
                         </div>
 
-                    </div>
-                    <div class="col s12 m2"><p id="msg" style="display:none"><%=msg %></p></div>
-                    <div class="col s12 m2">
-                        <p>ANIMATED DIV</p>
-                    </div>
-                </div>
+                   
             </div>
 
         </div>
 
     </form>
-
+            </div>
+        </main>
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="/js/materialize.min.js"></script>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
@@ -253,42 +276,49 @@
 
             setTimeout(function () {
                 $("#name").fadeIn();
+                $(".name_li").addClass('active');
                 }, 500);
                     });
         $(document).on('click', '.description', function () {
             clear_area();
             setTimeout(function () {
                 $("#description").fadeIn();
+                $(".description_li").addClass('active');
             }, 500);
         });
         $(document).on('click', '.cost', function () {
             clear_area();
             setTimeout(function () {
                 $("#cost").fadeIn();
+                $(".cost_li").addClass('active');
             }, 500);
         });
         $(document).on('click', '.duration', function () {
             clear_area();
             setTimeout(function () {
                 $("#duration").fadeIn();
+                $(".duration_li").addClass('active');
             }, 500);
         });
         $(document).on('click', '.limit', function () {
             clear_area();
             setTimeout(function () {
                 $("#limit").fadeIn();
+                $(".limit_li").addClass('active');
             }, 500);
         });
         $(document).on('click', '.expiry', function () {
             clear_area();
             setTimeout(function () {
                 $("#expiry").fadeIn();
+                $(".expiry_li").addClass('active');
             }, 500);
         });
         $(document).on('click', '.location', function () {
             clear_area();
             setTimeout(function () {
                 $("#location").fadeIn();
+                $(".location_li").addClass('active');
             }, 500);
         });
 
@@ -297,24 +327,37 @@
 
                 if ($("#name").is(':visible')) {
                     $("#name").fadeOut();
+                    $(".name_li").removeClass('active');
                 }
                 else if ($("#description").is(':visible')) {
                     $("#description").fadeOut();
+                    $(".description_li").removeClass('active');
+
                 }
                 else if ($("#cost").is(':visible')) {
                     $("#cost").fadeOut();
+                    $(".cost_li").removeClass('active');
+
                 }
                 else if ($("#duration").is(':visible')) {
                     $("#duration").fadeOut();
+                    $(".duration_li").removeClass('active');
+
                 }
                 else if ($("#limit").is(':visible')) {
                     $("#limit").fadeOut();
+                    $(".limit_li").removeClass('active');
+
                 }
                 else if ($("#expiry").is(':visible')) {
                     $("#expiry").fadeOut();
+                    $(".expiry_li").removeClass('active');
+
                 }
                 else if ($("#location").is(':visible')) {
                     $("#location").fadeOut();
+                    $(".location_li").removeClass('active');
+
                 }
             });
             
