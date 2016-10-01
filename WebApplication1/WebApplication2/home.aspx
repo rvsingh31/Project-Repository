@@ -11,7 +11,15 @@
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <style>
-        
+        .wrap_text {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+       
+
+
 @media (min-width: 991px) {
     main {
         padding-left: 120px;
@@ -70,7 +78,7 @@
                     <br />
                     <div class="row">
                         <div class="col s12 m1"></div>
-                        <% for (int y=0,z=0;y<ar2.Count;y=y+4,z++)
+                        <% for (y=0,z=0;y<ar2.Count;y=y+5,z++)
                             {
                                 if (count==2)
                                 {
@@ -90,21 +98,27 @@
                                             %>
 
                         
-
-                            <div class="card white col s12 m5 ">
-                                <div class="card-image" runat="server">
-                                   
-                                    <asp:Image ImageUrl="<%=ar4[z]%>"  runat="server" />                                  </div>
+                        <div class=" col s12 m5 ">
+                            <div class="card white">
+                                <div class="card-image">
+                                 <img src="<%=ar4[z] %>"/> 
+                                 </div>
                                  <div class="card-content">
-                                    <p class="blue-text"><%=ar2[y] %></p>
-                                     <p class="blue-text"><%=ar2[y+1] %><br /><%=ar2[y+2] %><br /><%=ar2[y+3] %></p>
+                                    <h6 class="teal-text"><%=ar2[y+1] %></h6>
+                                     <p class="wrap_text blue-text"><span class="teal-text">Description:</span> <%=ar2[y+2] %>
+                                         <br />
+                                        <span class="teal-text">Package Duration</span>  :<%=ar2[y+4] %>
+                                         <br />
+                                        <span class="teal-text">Rs</span>  <%=ar2[y+3] %> 
+                                        
+                                     </p>
                                  </div>
                                  <div class="card-action">
-                                    <a href="#">Book Now</a>
+                                    <a href="intr_show_package.aspx?id=<%=ar2[y] %>">VIEW PACKAGE</a>
                                   </div>
                            </div>
 
-                           
+                       </div>
 
                        
                         <div class="col s12 m1"><p></p></div>

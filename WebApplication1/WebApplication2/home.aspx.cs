@@ -22,6 +22,7 @@ namespace WebApplication2
         public ArrayList ar2;
         public ArrayList ar3;
         public ArrayList ar4;
+        public int y, z;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -59,13 +60,14 @@ namespace WebApplication2
             rdr.Close();
 
 
-            cc.setCommand("select p_name,p_description,cost_adult,duration,image_id from package_details ");
+            cc.setCommand("select p_id,p_name,p_description,cost_adult,duration,image_id from package_details ");
             SqlDataReader r =cc.getDDLResults();
             ar2 = new ArrayList();
             ar3 = new ArrayList();
             ar4 = new ArrayList();
             while (r.Read())
             {
+                ar2.Add(r["p_id"]);
                 ar2.Add(r["p_name"]);
                 ar2.Add(r["p_description"]);
                 ar2.Add(r["cost_adult"]);
