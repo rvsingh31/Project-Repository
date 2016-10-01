@@ -188,7 +188,7 @@
     <Content Include="Account\Web.config" />
     <Content Include="index.aspx" />
     <Content Include="home.aspx" />
-    <Content Include="WebForm3.aspx" />
+    <Content Include="file_test.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -416,12 +416,12 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm3.aspx.cs">
-      <DependentUpon>WebForm3.aspx</DependentUpon>
+    <Compile Include="file_test.aspx.cs">
+      <DependentUpon>file_test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm3.aspx.designer.cs">
-      <DependentUpon>WebForm3.aspx</DependentUpon>
+    <Compile Include="file_test.aspx.designer.cs">
+      <DependentUpon>file_test.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

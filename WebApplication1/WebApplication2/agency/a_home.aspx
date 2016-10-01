@@ -265,7 +265,16 @@
                                 <asp:Label ID="exp_lbl" runat="server" class="white-text" Text="Last Date of Participation"></asp:Label>
                                   <asp:TextBox ID="expiry_date" class="datepicker" runat="server"></asp:TextBox>
                             </div>
-                              <asp:Button ID="add_package_btn" class="btn white blue-text waves-effect waves-light" runat="server" Text="Add" OnClick="Add_Package_Click" />
+                              <br />
+                              <div class="col s12 ">
+                              <asp:Label runat="server" Text="Upload Image (Only JPEG accepted)" class="white-text"></asp:Label>
+                              <br />
+                            <asp:FileUpload runat="server" ID="f1" ></asp:FileUpload>
+                              
+                                  <br />
+                              <br />
+                              </div>
+                                  <asp:Button ID="add_package_btn" class="btn white blue-text waves-effect waves-light" runat="server" Text="Add" OnClick="Add_Package_Click" />
                               <br />
                            </div>
 

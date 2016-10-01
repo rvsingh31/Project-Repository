@@ -36,6 +36,10 @@ namespace Connect
         {
             this.cmd.Parameters.AddWithValue(a,b);
         }
+        public void setParameter(string a, byte[] b)
+        {
+            this.cmd.Parameters.AddWithValue(a, b);
+        }
         public void closeConnection()
         {
             this.conn.Close();

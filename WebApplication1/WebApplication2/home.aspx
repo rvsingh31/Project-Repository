@@ -21,9 +21,10 @@
 </head>
 <body class="blue darken-1">
     <form runat="server">
+        <div class="navbar-fixed">
   <nav class="white">
     <div class="nav-wrapper">
-		<ul class="left">
+		<ul class="right">
 			<li><a href="#" class="purple-text ">Easy travel</a></li>
 		</ul>
 		<a href="#" data-activates="mobile-demo" class="button-collapse purple-text"><i class="material-icons">menu</i></a>
@@ -57,15 +58,63 @@
 	</ul>
     </div>
   </nav>
-      
+      </div>
     <main>
       
         <div class="section intro">
+         
             <div class="container">
-
                 <br />
-                <div id="home">
+                <div id="home" >
                             <h5 class="yellow-text header light">Best Deals for you!!</h5>
+                    <br />
+                    <div class="row">
+                        <div class="col s12 m1"></div>
+                        <% for (int y=0,z=0;y<ar2.Count;y=y+4,z++)
+                            {
+                                if (count==2)
+                                {
+                                    count = 0;   %>
+
+                                        <div class="col s12 m1">
+											<p></p>
+											</div>
+										</div>
+										
+											<div class="row">
+												<div class="col s12 m1">
+												<p></p>
+												</div>
+                                   <% 
+                                           }
+                                            %>
+
+                        
+
+                            <div class="card white col s12 m5 ">
+                                <div class="card-image" runat="server">
+                                   
+                                    <asp:Image ImageUrl="<%=ar4[z]%>"  runat="server" />                                  </div>
+                                 <div class="card-content">
+                                    <p class="blue-text"><%=ar2[y] %></p>
+                                     <p class="blue-text"><%=ar2[y+1] %><br /><%=ar2[y+2] %><br /><%=ar2[y+3] %></p>
+                                 </div>
+                                 <div class="card-action">
+                                    <a href="#">Book Now</a>
+                                  </div>
+                           </div>
+
+                           
+
+                       
+                        <div class="col s12 m1"><p></p></div>
+
+                         <% count++;      }
+                                                 %>
+
+                    </div>
+
+
                 </div>
                 <div id="account" style="display:none">
                           <h5 class="yellow-text header light">Edit your Profile</h5>
@@ -197,9 +246,11 @@
                       <h6 class="yellow-text">Edit Your Profile</h6>
                       
                 </div>
-                 
+          
+                </div>
+                       
             </div>
-        </div>
+      
           
     </main>
     </form>
@@ -339,5 +390,8 @@
         }
     </script>
        
+    <script>
+        alert(<%=ar4[0]%>);
+    </script>
 </body>
 </html>

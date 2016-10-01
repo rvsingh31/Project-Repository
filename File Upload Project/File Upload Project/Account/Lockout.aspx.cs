@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplication2
+namespace File_Upload_Project.Account
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class Lockout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

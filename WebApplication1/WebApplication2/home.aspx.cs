@@ -18,6 +18,10 @@ namespace WebApplication2
         public string vtr;
         public ArrayList ar;
         public string msg;
+        public int count = 0;
+        public ArrayList ar2;
+        public ArrayList ar3;
+        public ArrayList ar4;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -52,6 +56,37 @@ namespace WebApplication2
             ar.Add(sb);
             ar.Add(rdr["contact"].ToString());
             ar.Add(rdr["email"].ToString());
+            rdr.Close();
+
+
+            cc.setCommand("select p_name,p_description,cost_adult,duration,image_id from package_details ");
+            SqlDataReader r =cc.getDDLResults();
+            ar2 = new ArrayList();
+            ar3 = new ArrayList();
+            ar4 = new ArrayList();
+            while (r.Read())
+            {
+                ar2.Add(r["p_name"]);
+                ar2.Add(r["p_description"]);
+                ar2.Add(r["cost_adult"]);
+                ar2.Add(r["duration"]);
+                ar3.Add(r["image_id"]);
+            }
+            r.Close();
+
+            for(int k=0;k<ar3.Count;k++)
+            {
+                cc.setCommand("select data from uploads where Id='"+ ar3[k].ToString()+"'");
+                SqlDataReader r2 = cc.getDDLResults();
+                r2.Read();
+                byte[] bytes = (byte[])r2["data"];
+                r2.Close();
+                string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+                ar4.Add("data:image/png;base64," + base64String);
+            }
+           
+
+
         }
 
         protected void Changes(object sender,CommandEventArgs e)

@@ -208,7 +208,18 @@ namespace WebApplication2.agency
             string dur2 = nights.Text;
             string exp = expiry_date.Text;
             string dur = dur1 + " days and " + dur2 + " nights";
-           
+
+            string file_name = f1.FileName.ToString();
+            string contentType = MimeMapping.GetMimeMapping(file_name);
+            if(contentType!="image/jpeg")
+            {
+                Response.Redirect("a_home.aspx?m=Select an image of JPEG format");
+            }
+            int length = f1.PostedFile.ContentLength;
+            byte[] pic = new byte[length];
+
+            f1.PostedFile.InputStream.Read(pic, 0, length);
+
             ConnectClass cc = new ConnectClass();
 
             cc.setConnection();
@@ -218,27 +229,46 @@ namespace WebApplication2.agency
             cc.openConnection();
             SqlDataReader r = cc.getDDLResults();
             r.Read();
-            
-                string ag_id = r["a_id"].ToString();
-            
-            cc.closeConnection();    
+            string ag_id = r["a_id"].ToString();
+            string im_id = p + "_" + ag_id + "_image";
+            cc.closeConnection();
 
-            cc.setCommand("insert into package_details(a_id,p_name,p_description,cost_adult,cost_child,duration,limit,expiry_date,location) values( @a_id,@p,@d,@adult,@child,@dur,@lim,@exp,@loc)");
-            cc.setParameter("@a_id",ag_id);
-            cc.setParameter("@p",p);
-            cc.setParameter("@d", d);
-            cc.setParameter("@adult", adult);
-            cc.setParameter("@child", child);
-            cc.setParameter("@dur", dur);
-            cc.setParameter("@lim", lim);
-            cc.setParameter("@exp", exp);
-            cc.setParameter("@loc", loc);
-          //  cc.setParameter("@a_id",ag_id);
+            cc.setCommand("insert into uploads(Id,name,content_type,data) values(@im,@name,@content,@data)");
+            cc.setParameter("@im", @im_id);
+            cc.setParameter("@name", file_name);
+            cc.setParameter("@content", contentType);
+            cc.setParameter("@data", pic);
             cc.openConnection();
-            int a = cc.getDMLResults();
-             if(a>0)
+
+            int b = cc.getDMLResults();
+
+
+          
+             if(b>0)
             {
-                Response.Redirect("/agency/a_home.aspx?m=Package added successfully!");
+                cc.setCommand("insert into package_details(a_id,p_name,p_description,cost_adult,cost_child,duration,limit,expiry_date,location,image_id) values( @a_id,@p,@d,@adult,@child,@dur,@lim,@exp,@loc,@im_id)");
+                cc.setParameter("@a_id", ag_id);
+                cc.setParameter("@p", p);
+                cc.setParameter("@d", d);
+                cc.setParameter("@im_id", im_id);
+                cc.setParameter("@adult", adult);
+                cc.setParameter("@child", child);
+                cc.setParameter("@dur", dur);
+                cc.setParameter("@lim", lim);
+                cc.setParameter("@exp", exp);
+                cc.setParameter("@loc", loc);
+                //  cc.setParameter("@a_id",ag_id);
+
+                int a = cc.getDMLResults();
+                if (a>0)
+                {
+                    Response.Redirect("/agency/a_home.aspx?m=Package added successfully!");
+                }
+                else
+                {
+                    Response.Redirect("/agency/a_home.aspx?m=Error Occured ! Try again later");
+                }
+                
             }   
              else
             {
