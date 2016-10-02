@@ -22,7 +22,7 @@
 
 @media (min-width: 991px) {
     main {
-        padding-left: 120px;
+        padding-left: 150px;
     }
 }
     </style>
@@ -78,7 +78,7 @@
                     <br />
                     <div class="row">
                         <div class="col s12 m1"></div>
-                        <% for (y=0,z=0;y<ar2.Count;y=y+5,z++)
+                        <% for (y=0; y<ar2.Count;y=y+6)
                             {
                                 if (count==2)
                                 {
@@ -101,7 +101,7 @@
                         <div class=" col s12 m5 ">
                             <div class="card white">
                                 <div class="card-image">
-                                 <img src="<%=ar4[z] %>"/> 
+                                 <img src="<%=ar2[y+5] %>"/> 
                                  </div>
                                  <div class="card-content">
                                     <h6 class="teal-text"><%=ar2[y+1] %></h6>
@@ -253,7 +253,86 @@
                             </div>      
                 </div>
                 <div id="search" style="display:none">
-                      <h6 class="yellow-text">Search Packages </h6>
+                      <h5 class="yellow-text">Search Packages </h5>
+             <asp:ScriptManager EnablePartialRendering="true" ID="ScriptManager1" runat="server" />
+               <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">              
+                 <ContentTemplate>    
+                  <div class="row">
+                        <div class="col s12 m12 input-field">
+                            <asp:TextBox ID="search_input" runat="server" class="white-text"></asp:TextBox>
+                            <label class="yellow-text" for="search_input"></label>
+                            &nbsp; <asp:Button runat="server" class="btn waves-effect waves-light yellow blue-text" OnClick="searchb_click" Text="Search"></asp:Button>
+                        </div>
+                        <br />
+                      </div>
+
+                            <div class="row">
+                        <div class="col s12 m1"></div>
+                        <% if (ar3.Count > 0)
+                                 {
+                                     for (y = 0; y < ar3.Count; y = y + 6)
+                                     {
+                                         if (count == 2)
+                                         {
+                                             count = 0;   %>
+
+                                        <div class="col s12 m1">
+											<p></p>
+											</div>
+										</div>
+										
+											<div class="row">
+												<div class="col s12 m1">
+												<p></p>
+												</div>
+                                   <% 
+                                 }
+                                            %>
+
+                        
+                        <div class=" col s12 m5 ">
+                            <div class="card white">
+                                <div class="card-image">
+                                 <img src="<%=ar3[y + 5] %>"/> 
+                                 </div>
+                                 <div class="card-content">
+                                    <h6 class="teal-text"><%=ar3[y + 1] %></h6>
+                                     <p class="wrap_text blue-text"><span class="teal-text">Description:</span> <%=ar3[y + 2] %>
+                                         <br />
+                                        <span class="teal-text">Package Duration</span>  :<%=ar3[y + 4] %>
+                                         <br />
+                                        <span class="teal-text">Rs</span>  <%=ar3[y + 3] %> 
+                                        
+                                     </p>
+                                 </div>
+                                 <div class="card-action">
+                                    <a href="intr_show_package.aspx?id=<%=ar3[y] %>">VIEW PACKAGE</a>
+                                  </div>
+                           </div>
+
+                       </div>
+
+                       
+                        <div class="col s12 m1"><p></p></div>
+
+                         <% count++;
+                                     }
+                                 }
+
+                                 else
+                                 {
+                                 %>
+                                               <br />
+                                                <h6 class="white-text center">No packages to show!!</h6>
+                               <%    
+                                 }  %>
+
+                    </div>
+
+                     
+                     
+                       </ContentTemplate>
+                 </asp:UpdatePanel>
                       
                 </div>
                 <div id="star" style="display:none">
@@ -404,8 +483,6 @@
         }
     </script>
        
-    <script>
-        alert(<%=ar4[0]%>);
-    </script>
+   
 </body>
 </html>

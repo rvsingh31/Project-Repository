@@ -189,6 +189,7 @@
     <Content Include="index.aspx" />
     <Content Include="home.aspx" />
     <Content Include="file_test.aspx" />
+    <Content Include="ajax_test.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -422,6 +423,13 @@
     </Compile>
     <Compile Include="file_test.aspx.designer.cs">
       <DependentUpon>file_test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ajax_test.aspx.cs">
+      <DependentUpon>ajax_test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ajax_test.aspx.designer.cs">
+      <DependentUpon>ajax_test.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
