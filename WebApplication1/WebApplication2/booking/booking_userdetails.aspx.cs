@@ -34,9 +34,7 @@ namespace WebApplication2.booking
             cmd.Parameters.AddWithValue("@tn", t_name);
             cmd.Parameters.AddWithValue("@te", t_email);
             cmd.Parameters.AddWithValue("@tmob", t_mobno);
-            //          cmd.Parameters.AddWithValue("@mem", members);
-            //          cmd.Parameters.AddWithValue("@tot", total_cost);
-
+            
             conn.Open();
             int n = cmd.ExecuteNonQuery();
             if (n > 0)

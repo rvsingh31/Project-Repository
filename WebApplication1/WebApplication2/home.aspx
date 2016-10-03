@@ -257,14 +257,7 @@
                 <div id="search" style="display:none">
                       <h5 class="yellow-text">Search Packages </h5>
              <asp:ScriptManager EnablePartialRendering="true" ID="ScriptManager1" runat="server" />
-                 <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
-                        <ProgressTemplate>
-                          
-                                  <h6 class="center yellow-text">Loading...</h6> 
-                          
-                        </ProgressTemplate>
-                    </asp:UpdateProgress>    
-               <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">              
+                <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">              
                  <ContentTemplate>    
                       <div class="row">
                         <div class="col s12 m12 input-field">
@@ -273,6 +266,14 @@
                             &nbsp; <asp:Button runat="server" class="btn waves-effect waves-light yellow blue-text" OnClick="searchb_click" Text="Search"></asp:Button>
                         </div>
                         <br />
+                           <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                        <ProgressTemplate>
+                          
+                                  <h6 class="center yellow-text">Loading...</h6> 
+                          
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>    
+               
                       </div>
 
                             <div class="row">
