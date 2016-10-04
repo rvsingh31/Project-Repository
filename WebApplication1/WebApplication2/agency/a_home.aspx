@@ -262,7 +262,7 @@
                                   </div>
                               </div>
                               <div class="input-field col s12">
-                                <asp:Label ID="exp_lbl" runat="server" class="white-text" Text="Last Date of Participation"></asp:Label>
+                                <asp:Label ID="exp_lbl" runat="server" class="white-text" Text="Trip Date"></asp:Label>
                                   <asp:TextBox ID="expiry_date" class="datepicker" runat="server"></asp:TextBox>
                             </div>
                               <br />

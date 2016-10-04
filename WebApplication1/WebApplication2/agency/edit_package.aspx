@@ -59,7 +59,7 @@
                  <li class="cost_li"><a class="change cost white-text">Cost of Package</a></li>
                  <li class="duration_li"><a  class="change duration white-text">Package's Duration</a></li>
                  <li class="limit_li"><a  class="change limit white-text">Limit of Customers</a></li>
-                 <li class="expiry_li"><a  class="change expiry white-text">Package's Expiration Date</a></li>
+                 <li class="expiry_li"><a  class="change expiry white-text"> Trip Date</a></li>
                  <li class="location_li"><a  class="change location white-text">Location</a></li>
                 
     </ul>
@@ -77,7 +77,7 @@
                  <li class="cost_li"><a  class="change cost white-text">Cost of Package</a></li>
                  <li class="duration_li"><a  class="change duration white-text">Package's Duration</a></li>
                  <li class="limit_li"><a  class="change limit white-text">Limit of Customers</a></li>
-                 <li class="expiry_li"><a  class="change expiry white-text">Package's Expiration Date</a></li>
+                 <li class="expiry_li"><a  class="change expiry white-text"> Trip Date</a></li>
                  <li class="location_li"><a  class="change location white-text">Location</a></li>
               
     
@@ -202,7 +202,7 @@
                             <br />
                         </div>
                         <div class="" id="expiry" style="display:none">
-                            <h6 class="white-text center text-lighten-1">Change your Package Expiration Date</h6>                    
+                            <h6 class="white-text center text-lighten-1">Change your Trip Date</h6>                    
                                <br />
                             <h6 class="white-text">CURRENT VALUE:</h6>
                             <span class="yellow-text">  <asp:Label ID="expiry_lbl" runat="server" Text=""></asp:Label></span>

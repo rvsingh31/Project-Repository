@@ -13,7 +13,7 @@ namespace Connect
     public class ConnectClass
     {
 
-       static  string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
+       static string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
 
             SqlConnection conn = new SqlConnection(constr);
 

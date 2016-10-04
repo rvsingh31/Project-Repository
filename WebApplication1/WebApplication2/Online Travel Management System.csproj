@@ -190,6 +190,8 @@
     <Content Include="home.aspx" />
     <Content Include="file_test.aspx" />
     <Content Include="ajax_test.aspx" />
+    <Content Include="intr_show_package.aspx" />
+    <Content Include="show_package.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -430,6 +432,20 @@
     </Compile>
     <Compile Include="ajax_test.aspx.designer.cs">
       <DependentUpon>ajax_test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="intr_show_package.aspx.cs">
+      <DependentUpon>intr_show_package.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="intr_show_package.aspx.designer.cs">
+      <DependentUpon>intr_show_package.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="show_package.aspx.cs">
+      <DependentUpon>show_package.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="show_package.aspx.designer.cs">
+      <DependentUpon>show_package.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
