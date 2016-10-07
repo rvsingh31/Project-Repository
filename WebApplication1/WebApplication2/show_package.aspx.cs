@@ -15,29 +15,650 @@ namespace WebApplication2
    
     public partial class WebForm6 : System.Web.UI.Page
     {
+        public int ct_ad,ct_ch,i;
+
+        public  void book_package(object sender,CommandEventArgs e)
+        {
+            ct_ad = Int32.Parse(Session["count_adult"].ToString());
+            ct_ch = Int32.Parse(Session["count_child"].ToString());
+
+            int adult_cost = Int32.Parse(ca.InnerText);
+            int child_cost = Int32.Parse(cc1.InnerText);
+            ConnectClass cc = new ConnectClass();
+            cc.setConnection();
+
+            if(e.CommandArgument.ToString()=="new")
+            {
+               if(Session["traveller"]!=null && Session["alone"]!=null)
+                {
+                   if(Session["alone"].ToString()=="no")
+                    {
+                        ArrayList adults = new ArrayList();
+                        ArrayList children = new ArrayList();
+                        for (int i = 0; i < ct_ad; i++)
+                        {
+                            int j = i + 1;
+                            // string input = (UpdatePanel1.ContentTemplateContainer.FindControl("adult_input" + (i + 1)) as TextBox).Text;
+                            string input = ((TextBox)UpdatePanel1.FindControl("ph").FindControl("adult_input" + j.ToString())).Text;
+                            adults.Add(input);
+                          }
+
+                          for (int i = 0; i < ct_ch; i++)
+                          {
+                            int j = i + 1;
+                            string input = ((TextBox)UpdatePanel1.FindControl("ph").FindControl("child_input" + j.ToString())).Text;
+                            children.Add(input);
+                          }
+
+                 
+                        string new_tr = traveller_name.Text;
+                        string t_contact = traveller_contact.Text;
+                        string et = Session["u_package_id"].ToString() + Session["id"].ToString() + System.DateTime.Today;
+                        cc.setCommand("insert into eticket(user_id,t_name,t_contact,eticket_id) values(@e,@r,@t,@y)");
+                        cc.setParameter("@e", Session["id"].ToString());
+                        cc.setParameter("@r", new_tr);
+                        cc.setParameter("@t", t_contact);
+                        cc.setParameter("@y", et);
+                        cc.openConnection();
+                        int a = cc.getDMLResults();
+                        cc.closeConnection();
+                        if (a > 0)
+                        {
+                            int t = (ct_ad * adult_cost) + (ct_ch * child_cost);
+                            string total_cost = t.ToString();
+                            ConnectClass cc1 = new ConnectClass();
+                            cc1.setConnection();
+                            cc1.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost) values(@p_id,@user_id,@et,@adults,@child,@tc)");
+                            cc1.setParameter("@p_id", Session["u_package_id"].ToString());
+                            cc1.setParameter("@user_id", Session["id"].ToString());
+                            cc1.setParameter("@et", et);
+                            cc1.setParameter("@adults", ct_ad.ToString());
+                            cc1.setParameter("@child", ct_ch.ToString());
+                            cc1.setParameter("@tc", total_cost);
+                            cc1.openConnection();
+                            int b = cc1.getDMLResults();
+                            cc1.closeConnection();
+                            if (b > 0)
+                            {
+                                int flag1 = 0;
+                                for (int o=0;o<ct_ad;o++)
+                                {
+                                    string x = adults[o].ToString();
+                                    ConnectClass cc2 = new ConnectClass();
+                                    cc2.setConnection();
+                                    cc2.setCommand("insert into members(eticket_id,name,a_or_c) values(@et,@name,'adult')");
+                                    cc2.setParameter("@et",et);
+                                    cc2.setParameter("@name",x);
+                                    cc2.openConnection();
+                                    int c = cc.getDMLResults();
+                                    cc2.closeConnection();
+                                    if (c>0)
+                                    {
+                                        flag1 = 0;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        flag1 = 1;
+                                        break;
+                                    }                                 
+                                }
+
+                                if (flag1 == 1)
+                                {
+                                    //FAILURE
+                                }
+                                else
+                                {
+                                   flag1 = 0;
+
+                                    for (int o = 0; o < ct_ch; o++)
+                                    {
+                                        string x = children[o].ToString();
+                                        ConnectClass cc3 = new ConnectClass();
+                                        cc3.setConnection();
+                                        cc3.setCommand("insert into members(eticket_id,name,a_or_c) values(@et,@name,'child')");
+                                        cc3.setParameter("@et", et);
+                                        cc3.setParameter("@name", x);
+                                        cc3.openConnection();
+                                        int c = cc.getDMLResults();
+                                        cc3.closeConnection();
+                                        if (c > 0)
+                                        {
+                                            flag1 = 0;
+                                            continue;
+                                        }
+                                        else
+                                        {
+                                            flag1 = 1;
+                                            break;
+                                        }
+                                    }
+                                    if(flag1==1)
+                                    {
+                                        //FAILURE
+                                    }
+                                    else
+                                    {
+                                        //FINAL SUCCESS--------------------ALL ADDED
+                                        new_traveller.Visible = false;
+                                        status.Text = "done";
+                                        final.Visible = true;
+
+
+                                    }
+
+
+                                }
+
+                            }
+                            else
+                            {
+                                //FAILURE
+                            }
+
+                        }
+                        else
+                        {
+                            //FAILURE
+                        }
+                    }
+                   else
+                    {
+                        string new_tr = traveller_name.Text;
+                        string t_contact = traveller_contact.Text;
+                        string et = Session["u_package_id"].ToString()+Session["id"].ToString()+System.DateTime.Today;
+                        cc.setCommand("insert into eticket(user_id,t_name,t_contact,eticket_id) values(@e,@r,@t,@y)");
+                        cc.setParameter("@e", Session["id"].ToString());
+                        cc.setParameter("@r", new_tr);
+                        cc.setParameter("@t", t_contact);
+                        cc.setParameter("@y",et);
+                        cc.openConnection();
+                        int a = cc.getDMLResults();
+                        if (a > 0)
+                        {
+                            string total_cost = adult_cost.ToString();
+
+                            cc.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost) values(@p_id,@user_id,@et,@adults,@child,@tc)");
+                            cc.setParameter("@p_id", Session["u_package_id"].ToString());
+                            cc.setParameter("@user_id", Session["id"].ToString());
+                            cc.setParameter("@et", et);
+                            cc.setParameter("@adults","1");
+                            cc.setParameter("@child","0");
+                            cc.setParameter("@tc",total_cost);
+
+                            int b =cc.getDMLResults();
+
+                            if(b > 0)
+                            {
+                                //SUCCESS
+                                new_traveller.Visible = false;
+                                status.Text = "done";
+                                final.Visible = true;
+
+                            }
+                            else
+                            {
+                                //FAILURE
+                            }
+                        }
+                        else
+                        {
+                            //FAILURE
+                        }
+                        cc.closeConnection();
+                    }
+
+                }
+               else
+                {
+                    Response.Redirect("home.aspx?m=Session timed Out. Try Again!");
+                }
+
+            }
+            else
+            {
+                cc.setCommand("select firstname,lastname,contact from users where id=@user_id");
+                cc.setParameter("@user_id", Session["id"].ToString());
+                cc.openConnection();
+                SqlDataReader rdr2 = cc.getDDLResults();
+                rdr2.Read();
+                string name = rdr2["firstname"] + " " + rdr2["lastname"];
+                string contact = rdr2["contact"].ToString();
+                rdr2.Close();
+                cc.closeConnection();
+                if (Session["traveller"] != null && Session["alone"] != null)
+                {
+                    if(Session["alone"].ToString()=="no")
+                    {
+                        ArrayList adults = new ArrayList();
+                        ArrayList children = new ArrayList();
+                         for (int i = 0; i < ct_ad; i++)
+                          {
+                            int j = i + 1;
+                            string input = ((TextBox)UpdatePanel1.FindControl("ph1").FindControl("adult_input" + j.ToString())).Text;
+                            adults.Add(input);
+                          }
+
+                          for (int i = 0; i < ct_ch; i++)
+                          {
+                            int j = i + 1;
+                            string input = ((TextBox)UpdatePanel1.FindControl("ph").FindControl("child_input" + j.ToString())).Text;
+                            children.Add(input);
+                          }
+
+                        string et = Session["u_package_id"].ToString() + Session["id"].ToString() + System.DateTime.Today;
+                        cc.setCommand("insert into eticket(user_id,t_name,t_contact,eticket_id) values(@e,@r,@t,@y)");
+                        cc.setParameter("@e", Session["id"].ToString());
+                        cc.setParameter("@r", name);
+                        cc.setParameter("@t",contact);
+                        cc.setParameter("@y", et);
+                        cc.openConnection();
+                
+                        int a = cc.getDMLResults();
+                        cc.closeConnection();
+                        if (a > 0)
+                        {
+                            int t = (ct_ad * adult_cost) + (ct_ch * child_cost);
+                            string total_cost = t.ToString();
+                            string y = Session["u_package_id"].ToString();
+                            string z = Session["id"].ToString();
+                            ConnectClass cc1 = new ConnectClass();
+                            cc1.setConnection();
+                            cc1.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost) values(@p_id,@user_id,@et,@adults,@child,@tc)");
+                            cc1.setParameter("@p_id", y);
+                            cc1.setParameter("@user_id",z);
+                            cc1.setParameter("@et", et);
+                            cc1.setParameter("@adults", ct_ad.ToString());
+                            cc1.setParameter("@child",ct_ch.ToString());
+                            cc1.setParameter("@tc", total_cost);
+                            cc1.openConnection();
+                            int b = cc1.getDMLResults();
+                            cc1.closeConnection();
+                            if (b > 0)
+                            {
+                                int flag1 = 0;
+                                for (int o = 0; o < ct_ad; o++)
+                                {
+                                    string x = adults[o].ToString();
+                                    ConnectClass cc2 = new ConnectClass();
+                                    cc2.setConnection();
+                                    cc2.setCommand("insert into members(eticket_id,name,a_or_c) values(@eticket,@ne,@a_or_c)");
+                                    cc2.setParameter("@eticket", et);
+                                    cc2.setParameter("@ne", x);
+                                    cc2.setParameter("@a_or_c", "adult");
+                                    cc2.openConnection();
+                                    int c = cc2.getDMLResults();
+                                    cc2.closeConnection();
+                                    if (c > 0)
+                                    {
+                                        flag1 = 0;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        flag1 = 1;
+                                        break;
+                                    }
+                                }
+
+                                if (flag1 == 1)
+                                {
+                                    //FAILURE
+                                }
+                                else
+                                {
+                                    flag1 = 0;
+
+                                    for (int o = 0; o < ct_ch; o++)
+                                    {
+                                        ConnectClass cc3 = new ConnectClass();
+                                        cc3.setConnection();
+                                        string x = children[o].ToString();
+                                        cc3.setCommand("insert into members(eticket_id,name,a_or_c) values(@et,@name,'child')");
+                                        cc3.setParameter("@et", et);
+                                        cc3.setParameter("@name", x);
+                                        cc3.openConnection();
+                                        int c = cc3.getDMLResults();
+                                        cc3.closeConnection();
+                                        if (c > 0)
+                                        {
+                                            flag1 = 0;
+                                            continue;
+                                        }
+                                        else
+                                        {
+                                            flag1 = 1;
+                                            break;
+                                        }
+                                    }
+                                    if (flag1 == 1)
+                                    {
+                                        //FAILURE
+                                    }
+                                    else
+                                    {
+                                        //FINAL SUCCESS--------------------ALL ADDED
+                                        old_traveller.Visible = false;
+                                        status.Text = "done";
+                                        final.Visible = true;
+                                    }
+
+
+                                }
+
+                            }
+                            else
+                            {
+                                //FAILURE
+                            }
+
+                        }
+                        else
+                        {
+                            //FAILURE
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        
+                        string et = Session["u_package_id"].ToString() + Session["id"].ToString() + System.DateTime.Today;
+                        cc.setCommand("insert into eticket(user_id,t_name,t_contact,eticket_id) values(@e,@r,@t,@y)");
+                        cc.setParameter("@e", Session["id"].ToString());
+                        cc.setParameter("@r", name);
+                        cc.setParameter("@t", contact);
+                        cc.setParameter("@y", et);
+                        cc.openConnection();
+                        int a = cc.getDMLResults();
+                        cc.closeConnection();
+                        if (a > 0)
+                        {
+                            string total_cost = adult_cost.ToString();
+                            ConnectClass cc2 = new ConnectClass();
+                            cc2.setConnection();
+                            cc2.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost) values(@p_id,@user_id,@et,@adults,@child,@tc)");
+                            cc2.setParameter("@p_id", Session["u_package_id"].ToString());
+                            cc2.setParameter("@user_id", Session["id"].ToString());
+                            cc2.setParameter("@et", et);
+                            cc2.setParameter("@adults", "1");
+                            cc2.setParameter("@child", "0");
+                            cc2.setParameter("@tc", total_cost);
+                            cc2.openConnection();
+                            int b = cc2.getDMLResults();
+                            cc2.closeConnection();
+                            if (b > 0)
+                            {
+                                //SUCCESS
+                                old_traveller.Visible = false;
+                                status.Text = "done";
+                                final.Visible = true;
+                            }
+                            else
+                            {
+                                //FAILURE
+                            }
+                        }
+                        else
+                        {
+                            //FAILURE
+                        }
+
+
+
+                    }
+
+                }
+                else
+                {
+                    Response.Redirect("home.aspx?m=Session timed Out. Try Again!");
+                }
+            }
+        }
+
+        public void back_btn_click(object sender,CommandEventArgs e)
+        {
+          if(e.CommandArgument.ToString() == "back2")
+            {
+                new_traveller.Visible = false;
+                old_traveller.Visible = false;
+                if(Session["alone"].ToString()=="yes")
+                {
+                    up.Visible = true;
+                }
+                else
+                {
+                    family.Visible = true;
+                }
+            }
+          else
+            {
+                if(Session["alone"]!=null && Session["alone"].ToString()=="no")
+                {
+                    family.Visible = false;
+                    up.Visible = true;
+                }
+                else
+                {
+                    up.Visible = false;
+                    family.Visible = false;
+                    select_div.Visible = true;
+                }
+            }
+        }
+
+        public void b3_click(object sender,EventArgs e)
+        {
+            string ad = ad_count.Text;
+            string ch = ch_count.Text;
+            ct_ad = Int32.Parse(ad);
+            ct_ch = Int32.Parse(ch);
+
+            Session["count_adult"] = ct_ad;
+            Session["count_child"] = ct_ch;
+
+            if (Session["traveller"] != null && Session["traveller"].ToString() == "yes")
+            {
+                 for (int i = 0; i < ct_ad; i++)
+                 {
+                    Label lb = new Label();
+                    lb.Text = "Adult"+(i+1);
+                    lb.CssClass = "blue-text";
+                    TextBox tb = new TextBox();
+                    tb.ID = "adult_input"+(i+1);
+                    tb.CssClass = "blue-text";
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                    ph.Controls.Add(lb);
+                    ph.Controls.Add(tb);
+                   
+                }
+
+
+                 for (int i = 0; i < ct_ch; i++)
+                 {
+                    Label lb = new Label();
+                    lb.Text = "Child" + (i + 1);
+                    lb.CssClass = "blue-text";
+                    TextBox tb = new TextBox();
+                    tb.ID = "child_input" + (i + 1);
+                    tb.CssClass = "blue-text";
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                    ph.Controls.Add(lb);
+                    ph.Controls.Add(tb);
+
+                }
+                old_traveller.Visible = true;
+            }
+            else if (Session["traveller"] != null && Session["traveller"].ToString() == "no")
+            {
+                for (int i = 0; i < ct_ad; i++)
+                {
+                    Label lb = new Label();
+                    lb.Text = "Adult" + (i + 1);
+                    lb.CssClass = "blue-text";
+                    TextBox tb = new TextBox();
+                    tb.ID = "adult_input" + (i + 1);
+                    tb.CssClass = "blue-text";
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                    ph1.Controls.Add(lb);
+                    ph1.Controls.Add(tb);
+
+                }
+
+
+                for (int i = 0; i < ct_ch; i++)
+                {
+                    Label lb = new Label();
+                    lb.Text = "Child" + (i + 1);
+                    lb.CssClass = "blue-text";
+                    TextBox tb = new TextBox();
+                    tb.ID = "child_input" + (i + 1);
+                    tb.CssClass = "blue-text";
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                    UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                    ph1.Controls.Add(lb);
+                    ph1.Controls.Add(tb);
+
+                }
+                new_traveller.Visible = true;
+            }
+            else
+            {
+                Response.Redirect("home.aspx?m=Session timed out.Try Again!");
+            }
+
+        }
+
         public void b1_click(object sender,EventArgs e)
         {
             string variable=traveler.Value;
            if(variable=="yes")
             {
-                select_div.Visible = false;
-                old_traveller.Visible = true;
+                Session["traveller"]= "yes";
+             //   old_traveller.Visible = true;
+            }
+          else  if(variable=="no")
+            {
+                Session["traveller"] = "no";
+             
             }
             else
             {
-                select_div.Visible = false;
-                new_traveller.Visible = true;
+                Response.Redirect("home.aspx?m=Provide your response correctly.Try Again!");
             }
+            select_div.Visible = false;
+            up.Visible = true;
         }
-      
+
+
+        public void b2_click(object sender, EventArgs e)
+        {
+            string v="";
+           if(r1.Checked)
+            {
+                v = r1.Text;
+            }
+           else if (r2.Checked)
+            {
+                v= r2.Text;
+            }
+
+            if (v == "yes")
+            {
+                Session["alone"] = "yes";
+            }
+            else if (v == "no")
+            {
+                Session["alone"] = "no";
+            }
+
+            up.Visible = false;
+
+            if(Session["alone"]!=null && Session["alone"].ToString()=="no")
+            {
+                family.Visible = true;
+            }
+            else if(Session["alone"] != null && Session["alone"].ToString() == "yes")
+            {
+                if (Session["traveller"] != null && Session["traveller"].ToString() == "yes")
+                {
+                    old_traveller.Visible = true;
+                }
+                else if (Session["traveller"] != null && Session["traveller"].ToString() == "no")
+                {
+                    new_traveller.Visible = true;
+                }
+                else
+                {
+                    Response.Redirect("home.aspx?m=Session timed out.Try Again!");
+                }
+            }
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+           up.Visible= false;
+            final.Visible = false;
+            family.Visible = false;
             new_traveller.Visible = false;
             old_traveller.Visible = false;
             if (Session["u_package_id"]==null)
             {
                 Response.Redirect("home.aspx?m=Select a package first");
             }
+
+
+
+          
+                    if(Session["count_adult"] != null && Session["count_child"]!=null )
+                {
+                    ct_ad = Int32.Parse(Session["count_adult"].ToString());
+                    ct_ch = Int32.Parse(Session["count_child"].ToString());
+
+                    for (int i = 0; i < ct_ad; i++)
+                    {
+                        Label lb = new Label();
+                        lb.Text = "Adult" + (i + 1);
+                        lb.CssClass = "blue-text";
+                        TextBox tb = new TextBox();
+                        tb.ID = "adult_input" + (i + 1);
+                        tb.CssClass = "blue-text";
+                        UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                        UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                        ph.Controls.Add(lb);
+                        ph.Controls.Add(tb);
+
+                    }
+
+
+                    for (int i = 0; i < ct_ch; i++)
+                    {
+                        Label lb = new Label();
+                        lb.Text = "Child" + (i + 1);
+                        lb.CssClass = "blue-text";
+                        TextBox tb = new TextBox();
+                        tb.ID = "child_input" + (i + 1);
+                        tb.CssClass = "blue-text";
+                        UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                        UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                        ph.Controls.Add(lb);
+                        ph.Controls.Add(tb);
+
+                    }
+
+                }
+          
+
+
+
+
             ConnectClass cc = new ConnectClass();
             cc.setConnection();
            

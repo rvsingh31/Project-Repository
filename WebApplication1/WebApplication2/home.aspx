@@ -266,7 +266,7 @@
                             &nbsp; <asp:Button runat="server" class="btn waves-effect waves-light yellow blue-text" OnClick="searchb_click" Text="Search"></asp:Button>
                         </div>
                         <br />
-                           <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                       <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
                         <ProgressTemplate>
                           
                                   <h6 class="center yellow-text">Loading...</h6> 
