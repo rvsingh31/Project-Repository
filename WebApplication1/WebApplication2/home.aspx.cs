@@ -20,8 +20,8 @@ namespace WebApplication2
         public string msg;
         public int count = 0;
         public ArrayList ar2;
-        public ArrayList ar3;
-        public int y;
+        public ArrayList ar3,ar4;
+        public int y, sess_id;
 
         protected void searchb_click(object sender,EventArgs e)
         {
@@ -53,6 +53,7 @@ namespace WebApplication2
             if(Session["username"] != null)
             {
                vtr = (string)Session["username"];
+                sess_id =Int32.Parse(Session["id"].ToString());
             }
             else
             {
@@ -100,7 +101,33 @@ namespace WebApplication2
             }
             r.Close();
 
-           
+            string today = System.DateTime.Today.ToString();
+            today.Split('/');
+            int c_m = (Int32.Parse(today[0].ToString()) * 10) + Int32.Parse(today[1].ToString());
+            int c_d = (Int32.Parse(today[3].ToString()) * 10) + Int32.Parse(today[4].ToString());
+            cc.setCommand("select p_name,p_id,expiry_date from package_details where p_id in (select p_id from booked_packages where user_id=@p)");
+            cc.setParameter("@p",Session["id"].ToString());
+            SqlDataReader rw = cc.getDDLResults();
+            ar4 = new ArrayList();
+            while (rw.Read())
+            {
+                ar4.Add(rw["p_id"].ToString());
+                ar4.Add(rw["p_name"].ToString());
+               string exp_date = rw["expiry_date"].ToString();
+                exp_date.Split('/');
+                int d = (Int32.Parse(exp_date[0].ToString()) * 10) + Int32.Parse(exp_date[1].ToString());
+                int m = (Int32.Parse(exp_date[3].ToString()) * 10) + Int32.Parse(exp_date[4].ToString());
+
+                if ((m - c_m) < 1)
+                {
+                    ar4.Add("display:none");
+                }
+                else
+                {
+                    ar4.Add("");
+                }
+            }
+
         }
 
         protected void Changes(object sender,CommandEventArgs e)
@@ -158,7 +185,8 @@ namespace WebApplication2
             }
             else
             {
-                Response.Redirect("home.aspx?m=Error Occured!Try Again later!");            }
+                Response.Redirect("home.aspx?m=Error Occured!Try Again later!");
+            }
         }
 
     }

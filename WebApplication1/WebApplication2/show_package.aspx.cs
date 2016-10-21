@@ -64,17 +64,19 @@ namespace WebApplication2
                         cc.closeConnection();
                         if (a > 0)
                         {
-                            int t = (ct_ad * adult_cost) + (ct_ch * child_cost);
+                            int t = (ct_ad * adult_cost) + (ct_ch * child_cost) + adult_cost;
                             string total_cost = t.ToString();
                             ConnectClass cc1 = new ConnectClass();
+                            string t_ct_ad = (ct_ad + 1).ToString();
                             cc1.setConnection();
-                            cc1.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost) values(@p_id,@user_id,@et,@adults,@child,@tc)");
+                            cc1.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost,status) values(@p_id,@user_id,@et,@adults,@child,@tc,@status)");
                             cc1.setParameter("@p_id", Session["u_package_id"].ToString());
                             cc1.setParameter("@user_id", Session["id"].ToString());
                             cc1.setParameter("@et", et);
-                            cc1.setParameter("@adults", ct_ad.ToString());
+                            cc1.setParameter("@adults", t_ct_ad.ToString());
                             cc1.setParameter("@child", ct_ch.ToString());
                             cc1.setParameter("@tc", total_cost);
+                            cc.setParameter("@status", "booked");
                             cc1.openConnection();
                             int b = cc1.getDMLResults();
                             cc1.closeConnection();
@@ -142,7 +144,7 @@ namespace WebApplication2
                                     {
                                         //FINAL SUCCESS--------------------ALL ADDED
                                         new_traveller.Visible = false;
-                                        status.Text = "done";
+                                    
                                         final.Visible = true;
 
 
@@ -179,21 +181,21 @@ namespace WebApplication2
                         {
                             string total_cost = adult_cost.ToString();
 
-                            cc.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost) values(@p_id,@user_id,@et,@adults,@child,@tc)");
+                            cc.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost,status) values(@p_id,@user_id,@et,@adults,@child,@tc,@status)");
                             cc.setParameter("@p_id", Session["u_package_id"].ToString());
                             cc.setParameter("@user_id", Session["id"].ToString());
                             cc.setParameter("@et", et);
                             cc.setParameter("@adults","1");
                             cc.setParameter("@child","0");
                             cc.setParameter("@tc",total_cost);
-
+                            cc.setParameter("@status","booked");
                             int b =cc.getDMLResults();
 
                             if(b > 0)
                             {
                                 //SUCCESS
                                 new_traveller.Visible = false;
-                                status.Text = "done";
+                             
                                 final.Visible = true;
 
                             }
@@ -247,7 +249,7 @@ namespace WebApplication2
                             children.Add(input);
                           }
 
-                        string et = Session["u_package_id"].ToString() + Session["id"].ToString() + System.DateTime.Today;
+                        string et =System.DateTime.Today + Session["u_package_id"].ToString() + Session["id"].ToString();
                         cc.setCommand("insert into eticket(user_id,t_name,t_contact,eticket_id) values(@e,@r,@t,@y)");
                         cc.setParameter("@e", Session["id"].ToString());
                         cc.setParameter("@r", name);
@@ -259,17 +261,18 @@ namespace WebApplication2
                         cc.closeConnection();
                         if (a > 0)
                         {
-                            int t = (ct_ad * adult_cost) + (ct_ch * child_cost);
+                            int t = (ct_ad * adult_cost) + (ct_ch * child_cost) + adult_cost;
                             string total_cost = t.ToString();
                             string y = Session["u_package_id"].ToString();
                             string z = Session["id"].ToString();
                             ConnectClass cc1 = new ConnectClass();
                             cc1.setConnection();
+                            string t_ct_ad = (ct_ad + 1).ToString();
                             cc1.setCommand("insert into booked_packages(p_id,user_id,eticket_id,adults,child,total_cost) values(@p_id,@user_id,@et,@adults,@child,@tc)");
                             cc1.setParameter("@p_id", y);
                             cc1.setParameter("@user_id",z);
                             cc1.setParameter("@et", et);
-                            cc1.setParameter("@adults", ct_ad.ToString());
+                            cc1.setParameter("@adults", t_ct_ad.ToString());
                             cc1.setParameter("@child",ct_ch.ToString());
                             cc1.setParameter("@tc", total_cost);
                             cc1.openConnection();
@@ -340,7 +343,6 @@ namespace WebApplication2
                                     {
                                         //FINAL SUCCESS--------------------ALL ADDED
                                         old_traveller.Visible = false;
-                                        status.Text = "done";
                                         final.Visible = true;
                                     }
 
@@ -365,7 +367,7 @@ namespace WebApplication2
                     else
                     {
                         
-                        string et = Session["u_package_id"].ToString() + Session["id"].ToString() + System.DateTime.Today;
+                        string et =System.DateTime.Today + Session["u_package_id"].ToString() + Session["id"].ToString();
                         cc.setCommand("insert into eticket(user_id,t_name,t_contact,eticket_id) values(@e,@r,@t,@y)");
                         cc.setParameter("@e", Session["id"].ToString());
                         cc.setParameter("@r", name);
@@ -393,7 +395,6 @@ namespace WebApplication2
                             {
                                 //SUCCESS
                                 old_traveller.Visible = false;
-                                status.Text = "done";
                                 final.Visible = true;
                             }
                             else
@@ -437,11 +438,15 @@ namespace WebApplication2
             {
                 if(Session["alone"]!=null && Session["alone"].ToString()=="no")
                 {
+                    Session["count_adult"]=null;
+                    Session["count_child"]= null;
                     family.Visible = false;
                     up.Visible = true;
                 }
                 else
                 {
+                    Session["count_adult"] = null;
+                    Session["count_child"] = null;
                     up.Visible = false;
                     family.Visible = false;
                     select_div.Visible = true;
@@ -458,7 +463,10 @@ namespace WebApplication2
 
             Session["count_adult"] = ct_ad;
             Session["count_child"] = ct_ch;
-
+            int value1 = Int32.Parse(ca.InnerText);
+            int value2 = Int32.Parse(cc1.InnerText);
+            int tot = (value1 * ct_ad) + (value2 * ct_ch) + value1;
+            charges_old.InnerText = tot.ToString();
             if (Session["traveller"] != null && Session["traveller"].ToString() == "yes")
             {
                  for (int i = 0; i < ct_ad; i++)
@@ -472,8 +480,7 @@ namespace WebApplication2
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
                     ph.Controls.Add(lb);
-                    ph.Controls.Add(tb);
-                   
+                    ph.Controls.Add(tb);        
                 }
 
 
@@ -495,6 +502,11 @@ namespace WebApplication2
             }
             else if (Session["traveller"] != null && Session["traveller"].ToString() == "no")
             {
+                int value3 = Int32.Parse(ca.InnerText);
+                int value4 = Int32.Parse(cc1.InnerText);
+                int tot1 = (value3 * ct_ad) + (value4 * ct_ch) + value3;
+                charges_new.InnerText = tot1.ToString();
+
                 for (int i = 0; i < ct_ad; i++)
                 {
                     Label lb = new Label();
@@ -581,16 +593,24 @@ namespace WebApplication2
 
             if(Session["alone"]!=null && Session["alone"].ToString()=="no")
             {
+                Session["count_adult"] = null;
+                Session["count_child"] = null;
                 family.Visible = true;
             }
             else if(Session["alone"] != null && Session["alone"].ToString() == "yes")
             {
                 if (Session["traveller"] != null && Session["traveller"].ToString() == "yes")
                 {
+                    Session["count_adult"] = "0";
+                    Session["count_child"] = "0";
+                    charges_old.InnerText = ca.InnerText;
                     old_traveller.Visible = true;
                 }
                 else if (Session["traveller"] != null && Session["traveller"].ToString() == "no")
                 {
+                    Session["count_adult"] = "0";
+                    Session["count_child"] = "0";
+                    charges_new.InnerText = ca.InnerText;
                     new_traveller.Visible = true;
                 }
                 else

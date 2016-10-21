@@ -47,7 +47,7 @@
            <li class="center"><a class=" blue-text text-darken-1" href="#!"><%=vtr %></a></li>
             <li class="active li_home"><a class="home blue-text text-darken-1" href="#!">Home</a></li>
 		<li class="li_search"> <a  class=" search blue-text text-darken-1"  href="#!">Search Packages</a></li>
-        <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">Starred Places</a></li>
+        <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">History</a></li>
         <li class="li_account"><a  class="account blue-text text-darken-1" href="#!">Account Settings</a></li>
 		<li><a  class="blue-text text-darken-1" href="#!">Sign Out</a></li>
     </ul>
@@ -61,7 +61,7 @@
            <li class="center"><a class="blue-text text-darken-1" href="#!"><%=vtr %></a></li>
         <li class="active li_home"><a  class="home blue-text text-darken-1" href="#!">Home</a></li>
 		<li class="li_search"><a  class="search blue-text text-darken-1"  href="#!">Search Packages</a></li>
-        <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">Starred Places</a></li>
+        <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">History</a></li>
         <li class="li_account"><a  class=" account blue-text text-darken-1" href="#!">Account Settings</a></li>
 		<li><a  class="blue-text text-darken-1" href="#!">Sign Out</a></li>
     
@@ -347,8 +347,40 @@
                       
                 </div>
                 <div id="star" style="display:none">
-                      <h6 class="yellow-text">Edit Your Profile</h6>
-                      
+                      <h6 class="yellow-text">Here you'll see your history of trips and also the packages that you have starred!</h6>
+                      <h6 class="yellow-text"><i>NOTE</i>: If a particular package which you have recently booked and it qualifies for cancellation,then only the <i>cancellation button</i> will be enabled!</h6>
+
+                      <br />
+
+                    <div class="row">
+                        <div class="card-panel col s12 m5 white">
+                            <h5 class="blue-text center">History</h5>
+                            <div class="divider blue"></div>
+                            <br />
+                            <% for (int e = 0; e < ar4.Count; e = e + 3)
+                                {%>
+                                <fieldset>
+                                    <legend class="blue-text"><%=ar4[e+1] %></legend>
+                                    <a href="intr_cancel.aspx?view=yes&p_id=<%=ar4[e] %>" class="left btn waves-effect waves-light yellow blue-text">E-Ticket</a>
+                                    <%if (ar4[e + 2].ToString() == "")
+                                        {  %>
+                                                  <a class="right btn waves-effect waves-light yellow blue-text" style="<%=ar4[e+2] %>" href="intr_cancel.aspx?p_id=<%=ar4[e] %>">Cancellation</a>
+                                   <%     }
+                                      %>
+
+                                </fieldset>
+                           <%   } %>
+                            <br />
+                        </div>
+                        <div class="col s12 m1">
+                            <p></p>
+                        </div>
+                        <div class="card-panel col s12 m5 white">
+                            <h5 class="blue-text center">Starred Places</h5>
+                            <div class="divider blue"></div>
+                            <br />
+                        </div>
+                    </div>
                 </div>
           
                 </div>

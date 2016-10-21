@@ -193,7 +193,7 @@
                         </div> 
                         <br />
                         <div class="row"> 
-                         <h6 class="teal-text"><strong>TOTAL CHARGES<span id="charges" runat="server"></span></strong></h6>
+                         <h6 class="teal-text"><strong>TOTAL CHARGES: <span id="charges_new" class="blue-text" runat="server"></span></strong></h6>
                  <br /> 
                             </div>
                               <h6 class="teal-text center"><strong>Provide the following details</strong></h6>
@@ -218,7 +218,7 @@
                     </div>
                         <br />
                         <div class="row">
-                              <h6 class="teal-text"><strong>TOTAL CHARGES<span id="Span1" runat="server"></span></strong></h6>
+                              <h6 class="teal-text"><strong>TOTAL CHARGES: <span id="charges_old" runat="server"></span></strong></h6>
                  <br /> 
                 </div>
                       <!-- DYNAMIC ROWS-->
@@ -230,8 +230,12 @@
                     </div>
                     
                      <div class="col s12 m12" id="final" runat="server">
-                         <asp:Label ID="status" runat="server" class="blue-text"></asp:Label>
-
+                         <h6 class="teal-text">Congratulations!Your package has been booked</h6>
+                         <br />
+                         <h6 class="teal-text">The above displayed link is your e-ticket which will be converted later into hard copy 
+                             ticket once all the necessary steps has been completed.For now, this eticket will work as your original ticket.
+                             So,download it safely or else it will be available in your account in the <strong>HISTORY</strong> section.Thank You for choosing EASY-TRAVEL.
+                         </h6>
                      </div>
 
                     </ContentTemplate>

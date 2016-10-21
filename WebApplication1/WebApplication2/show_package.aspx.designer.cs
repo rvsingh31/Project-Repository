@@ -319,13 +319,13 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.Button goback2;
         
         /// <summary>
-        /// charges control.
+        /// charges_new control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl charges;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl charges_new;
         
         /// <summary>
         /// l2 control.
@@ -400,13 +400,13 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.Button goback3;
         
         /// <summary>
-        /// Span1 control.
+        /// charges_old control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl charges_old;
         
         /// <summary>
         /// ph control.
@@ -434,15 +434,6 @@ namespace WebApplication2 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl final;
-        
-        /// <summary>
-        /// status control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label status;
         
         /// <summary>
         /// l control.
