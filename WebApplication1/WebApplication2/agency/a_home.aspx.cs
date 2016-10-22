@@ -19,11 +19,10 @@ namespace WebApplication2.agency
         public SqlDataReader r;
         public int count=0;
         public ArrayList ar1;
-        public ArrayList ar2;
+        public ArrayList ar2,ar3,ar4;
         public int q;
-        // public SqlDataAdapter sda;
-        // public DataSet ds;
-        //public DataRow row;
+        
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["username"] != null)
@@ -58,6 +57,8 @@ namespace WebApplication2.agency
             conn.Open();
 
             rdr = cmd.ExecuteReader();
+            ConnectClass cc = new ConnectClass();
+            cc.setConnection();
 
             if (rdr.Read())
             {
@@ -73,8 +74,6 @@ namespace WebApplication2.agency
                 temp_div.Visible = false;
                 pm.Visible = true;
                 pm2.Visible = true;
-                ConnectClass cc = new ConnectClass();
-                cc.setConnection();
                 cc.setCommand("select * from package_details where a_id=(select a_id from agency_details where user_id=@o)");
                 cc.setParameter("@o", i.ToString());
                 cc.openConnection();
@@ -96,6 +95,31 @@ namespace WebApplication2.agency
                 {
                     this.packages = "";
                 }
+                r.Close();
+                cc.setCommand("select p_name,booked_packages.p_id,COUNT(user_id) as users from package_details join booked_packages on(package_details.p_id=booked_packages.p_id) where booked_packages.status='booked' and package_details.a_id=(select a_id from agency_details where user_id=@a_id) group by booked_packages.p_id,package_details.p_name");
+                cc.setParameter("@a_id",Session["id"].ToString());
+                SqlDataReader r2 = cc.getDDLResults();
+                ar3 = new ArrayList();
+                while (r2.Read())
+                {
+                    ar3.Add(r2["p_name"].ToString());
+                    ar3.Add(r2["p_id"].ToString());
+                    ar3.Add(r2["users"].ToString());
+                }
+
+                r2.Close();
+              
+                cc.setCommand("select firstname,lastname,booked_packages.p_id,user_id,p_name from (users join booked_packages on (booked_packages.user_id=users.Id)) join package_details on (booked_packages.p_id=package_details.p_id) where booked_packages.status='cancelled' and package_details.a_id=(select a_id from agency_details where user_id=@w)");
+                cc.setParameter("@w",Session["id"].ToString());
+                SqlDataReader r3 = cc.getDDLResults();
+                ar4 = new ArrayList();
+                while(r3.Read())
+                {
+                    ar4.Add(r3["firstname"].ToString()+" "+r3["lastname"].ToString());
+                    ar4.Add(r3["p_name"]);
+                    ar4.Add("p_id="+r3["p_id"].ToString()+"&user_id="+r3["user_id"].ToString());
+                }
+
                 cc.closeConnection();
 
             }       
@@ -110,7 +134,7 @@ namespace WebApplication2.agency
 
             }
 
-
+           
         }
     
         protected void Save_Name_Click(object sender, EventArgs e)

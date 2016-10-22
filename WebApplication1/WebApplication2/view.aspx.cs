@@ -13,6 +13,24 @@ namespace WebApplication2
     {
         public string members;
         public string cancel;
+
+        protected void remove_click(object sender,EventArgs e)
+        {
+            string p_id = Session["cancel_package_id"].ToString();
+            ConnectClass cc = new ConnectClass();
+            cc.setConnection();
+            cc.setCommand("update booked_packages set status=@e where p_id=@p_id and user_id=@user_id");
+            cc.setParameter("@e","cancelled");
+            cc.setParameter("@p_id",p_id);
+            cc.setParameter("@user_id",Session["id"].ToString());
+            cc.openConnection();
+            int i = cc.getDMLResults();
+            if(i>0)
+            {
+                Response.Redirect("home.aspx?m=Package has been cancelled.View Cancellation Status in History!");
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -72,7 +90,7 @@ namespace WebApplication2
             eticket_span.InnerText = rdr2["eticket_id"].ToString();
             total_cost_span.InnerText = total_cost;
             rdr2.Close();
-            if (adult>0 && child > 0)
+            if (adult>1 || child > 0)
             {
                 adults_div.InnerHtml = "<h6 class='teal-text'>-- Travellers (ADULTS) --</h6>";
                 child_div.InnerHtml = "<h6 class='teal-text'>-- Travellers (CHILDREN) --</h6>";

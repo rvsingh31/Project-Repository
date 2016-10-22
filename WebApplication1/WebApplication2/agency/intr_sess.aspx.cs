@@ -12,12 +12,22 @@ namespace WebApplication2.agency
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["type"] != null && Request.QueryString["type"]=="show")
+            {
+                string p_id = Request.QueryString["p_id"].ToString();
+                Session["details_id"] = p_id;
+                Response.Redirect("details.aspx");
+            }
+            else
+            {
+                
             string id = Request.QueryString["id"];
             string name = Request.QueryString["name"];
 
             Session["package_id"] = id;
             Session["package_name"]=name;
             Response.Redirect("edit_package.aspx");
+            }
         }
     }
 }

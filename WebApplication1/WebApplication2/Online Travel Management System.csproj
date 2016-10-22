@@ -176,10 +176,12 @@
     <Content Include="agency\a_home.aspx" />
     <Content Include="agency\intr_sess.aspx" />
     <Content Include="agency\edit_package.aspx" />
+    <Content Include="agency\refund.aspx" />
     <Content Include="App_Data\travel.mdf" />
     <Content Include="App_Data\travel_log.ldf">
       <DependentUpon>travel.mdf</DependentUpon>
     </Content>
+    <Content Include="agency\details.aspx" />
     <Content Include="view.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -379,10 +381,24 @@
     <Compile Include="agency\edit_package.aspx.designer.cs">
       <DependentUpon>edit_package.aspx</DependentUpon>
     </Compile>
+    <Compile Include="agency\refund.aspx.cs">
+      <DependentUpon>refund.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agency\refund.aspx.designer.cs">
+      <DependentUpon>refund.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="agency\details.aspx.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agency\details.aspx.designer.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="view.aspx.cs">
       <DependentUpon>view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

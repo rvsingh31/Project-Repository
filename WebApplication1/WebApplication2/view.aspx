@@ -185,7 +185,7 @@
                         </p>
                 </div>
                     <div class="modal-footer">
-                         <a href="#!" class="red-text modal-action modal-close waves-effect waves-blue btn-flat">Proceed</a>
+                         <asp:Button  runat="server" OnClick="remove_click" class="red-text blue white-text modal-action modal-close waves-effect waves-blue btn-flat" Text="Proceed"></asp:Button>
                     </div>
              </div>
         <div class="col s12 m1">

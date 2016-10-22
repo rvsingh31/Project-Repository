@@ -357,11 +357,14 @@
                             <h5 class="blue-text center">History</h5>
                             <div class="divider blue"></div>
                             <br />
-                            <% for (int e = 0; e < ar4.Count; e = e + 3)
+                            <%if(ar4.Count!=0)
+                                { 
+
+                                for (int e = 0; e < ar4.Count; e = e + 3)
                                 {%>
                                 <fieldset>
                                     <legend class="blue-text"><%=ar4[e+1] %></legend>
-                                    <a href="intr_cancel.aspx?view=yes&p_id=<%=ar4[e] %>" class="left btn waves-effect waves-light yellow blue-text">E-Ticket</a>
+                                    <a href="intr_cancel.aspx?view=yes&p_id=<%=ar4[e] %>" class="left btn waves-effect waves-light yellow blue-text">VIEW</a>
                                     <%if (ar4[e + 2].ToString() == "")
                                         {  %>
                                                   <a class="right btn waves-effect waves-light yellow blue-text" style="<%=ar4[e+2] %>" href="intr_cancel.aspx?p_id=<%=ar4[e] %>">Cancellation</a>
@@ -369,7 +372,13 @@
                                       %>
 
                                 </fieldset>
-                           <%   } %>
+                           <%   }
+                               }
+                               else
+                               {%>
+                                   <h6 class="blue-text">No Packages to show!</h6>
+                            <%   }
+                               %>
                             <br />
                         </div>
                         <div class="col s12 m1">
@@ -380,6 +389,35 @@
                             <div class="divider blue"></div>
                             <br />
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m2">
+                            <p></p>
+                        </div>
+                        <div class="col s12 m8 card-panel">
+                            <h6 class="blue-text center">Cancellation Status!</h6>
+                         <br />
+                            <p class="teal-text"><i>NOTE:</i> The following packages have been already cancelled and displayed here only because the refund is being processed.
+                                As soon as the refund is complete, the corresponding package's cancellation process will be complete .
+                            </p>
+                            <br />
+                            <div class="collection">
+                            <% if (ar5.Count != 0)
+                                {
+                                    for(int r=0;r<ar5.Count;r=r+2)
+                                    {
+                                        %>
+                                  <a href="#!" id="<%=ar5[r+1] %>" class="collection-item blue-text"><%=ar5[r] %><br /> <span class="teal-text">Status:</span> &nbsp; Refund in Progress!</a>  
+                                    
+                              <%      }
+                                } %>
+                        </div>
+                        </div>
+
+                        <div class="col s12 m2">
+                            <p></p>
+                        </div>
+
                     </div>
                 </div>
           

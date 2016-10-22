@@ -20,7 +20,7 @@ namespace WebApplication2
         public string msg;
         public int count = 0;
         public ArrayList ar2;
-        public ArrayList ar3,ar4;
+        public ArrayList ar3,ar4,ar5;
         public int y, sess_id;
 
         protected void searchb_click(object sender,EventArgs e)
@@ -105,8 +105,9 @@ namespace WebApplication2
             today.Split('/');
             int c_m = (Int32.Parse(today[0].ToString()) * 10) + Int32.Parse(today[1].ToString());
             int c_d = (Int32.Parse(today[3].ToString()) * 10) + Int32.Parse(today[4].ToString());
-            cc.setCommand("select p_name,p_id,expiry_date from package_details where p_id in (select p_id from booked_packages where user_id=@p)");
+            cc.setCommand("select p_name,p_id,expiry_date from package_details where p_id in (select p_id from booked_packages where user_id=@p and status=@st)");
             cc.setParameter("@p",Session["id"].ToString());
+            cc.setParameter("@st","booked");
             SqlDataReader rw = cc.getDDLResults();
             ar4 = new ArrayList();
             while (rw.Read())
@@ -127,6 +128,21 @@ namespace WebApplication2
                     ar4.Add("");
                 }
             }
+
+            rw.Close();
+
+            cc.setCommand("select p_name,p_id from package_details where p_id in (select p_id from booked_packages where user_id=@pd and status=@st2)");
+            cc.setParameter("@pd",Session["id"].ToString());
+            cc.setParameter("@st2","cancelled");
+            SqlDataReader rw2 = cc.getDDLResults();
+            ar5 = new ArrayList();
+            while (rw2.Read())
+            {
+                ar5.Add(rw2["p_name"].ToString());
+                ar5.Add(rw2["p_id"].ToString());
+                
+            }
+            rw2.Close();
 
         }
 

@@ -363,8 +363,83 @@
             <div class="col s12 m12 card-panel blue" style="background:url('b2.jpg') no-repeat;height:22em">
                 <div class="row">
                     <div class="col s12 m6 right">
-                        <h6 class="white-text center" style="display:none"><strong>BOOKINGS</strong></h6>
+                        <div class="row">
+                            <div class="col s12">
+                                  <ul class="tabs blue">
+                                     
+                                     <li class="tab col s3 "><a href="#booking" class="white-text">Bookings</a></li>
+                                     <li class="tab col s3"><a href="#cancel" class="white-text">Cancellations <span class="yellow-text">[<%=ar4.Count/3 %>]</span></a></li>
+                                    </ul>
+                           </div>
+                            <div id="booking" class="col s12" style="overflow-y:auto;height:18em">
+                                <h6 class="yellow-text center">Respective Bookings for Packages!</h6>
+                                <br />
+                                <div class="collection" style="border:none;">
+                                    <% if (ar3.Count != 0)
+                                                        {
+                                                            for (int i = 0; i < ar3.Count; i = i + 3)
+                                                            {%>
+                                        
+                                            <a href="intr_sess.aspx?type=show&p_id=<%=ar3[i + 1] %>" style="background:#2196F3" class="collection-item white-text">
+                                                Package-Name : &nbsp;
+                                                <span class="yellow-text">
+                                                    <%=ar3[i] %>
+                                                </span>
+                                                <br />
+                                                Total Registrations: &nbsp;
+                                                <span class="yellow-text">
+                                                    <%=ar3[i + 2] %>
+                                                </span>
+                                            </a>            
 
+                                     <%       }
+                                                        }
+                                                        else
+                                                        {  %>
+                                                        <h6 class="yellow-text center">No Bookings Yet !!</h6>
+                                                    <%    } %>
+                                </div>
+                            </div>
+                            <div id="cancel" class="col s12">
+                                    <h6 class="yellow-text center">Cancellations and Refunds!</h6>
+                                     <br />
+                                <div >
+                                    <% if (ar4.Count != 0)
+                                                        {
+                                                            for (int i = 0; i < ar4.Count; i = i + 3)
+                                                            {%>
+                                                   <div>
+                                                       <div class="row">
+                                                           <div class="col s12 m6 white-text left">
+                                                               Package-Name :<%=ar4[i+1] %>
+                                                               <br />
+                                                               User: <%=ar4[i] %>
+                                                           </div>
+                                                           <div class="col s12 m6 right">
+                                                               <a href="refund.aspx?<%=ar4[i+2] %>" class="btn modal-trigger white blue-text waves-effect waves-light" >REFUND COMPLETE ?</a>
+                                                           </div>
+                                                           
+                                                       </div>
+                                                   </div>
+                                                
+
+                                                    <div class="divider white lighten-1"></div>
+                                                     <br />
+                                                <%   }
+                                                        }
+                                                        else
+                                                        {  %>
+
+                                                        <h6 class="yellow-text center">No Cancellations Yet !!</h6>
+                                      
+                                                  <%    } %>
+
+                                                  
+                                         </div>
+
+                                <br />
+                            </div>
+                         </div>
 
                     </div>
                 </div> 
@@ -394,7 +469,8 @@
                 selectYears: 15,
                 format: 'dd/mm/yyyy'
             });
-
+            $('.modal-trigger').leanModal();
+            $('ul.tabs').tabs();
 
             $('#name_btn').click(function () {
 
