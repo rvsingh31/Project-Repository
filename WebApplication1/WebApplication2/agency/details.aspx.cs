@@ -8,6 +8,8 @@ using Connect;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+
+
 namespace WebApplication2
 {
     public partial class details : System.Web.UI.Page
@@ -35,7 +37,10 @@ namespace WebApplication2
                 ar1.Add(rdr["child"]);
                 ar1.Add(rdr["total_cost"]);
             }
-           
+
+
         }
+
+       
     }
 }

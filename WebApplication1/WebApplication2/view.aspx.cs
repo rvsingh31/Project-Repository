@@ -13,7 +13,7 @@ namespace WebApplication2
     {
         public string members;
         public string cancel;
-
+        public string et;
         protected void remove_click(object sender,EventArgs e)
         {
             string p_id = Session["cancel_package_id"].ToString();
@@ -78,6 +78,7 @@ namespace WebApplication2
 
             string total_cost = rdr["total_cost"].ToString();
             string eticket = rdr["eticket_id"].ToString();
+            et = eticket;
             int adult = Int32.Parse(rdr["adults"].ToString());
             int child = Int32.Parse(rdr["child"].ToString());
             rdr.Close();
@@ -88,6 +89,7 @@ namespace WebApplication2
             rdr2.Read();
             main_traveller.InnerText = rdr2["t_name"].ToString();
             eticket_span.InnerText = rdr2["eticket_id"].ToString();
+
             total_cost_span.InnerText = total_cost;
             rdr2.Close();
             if (adult>1 || child > 0)

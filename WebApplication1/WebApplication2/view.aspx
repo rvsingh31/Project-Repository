@@ -170,7 +170,7 @@
                    <div class="row">
                         <br />
                         <div class="center">
-                              <asp:Button runat="server" href="#!" class="btn white blue-text waves-effect waves-light" Text="Download E-Ticket"></asp:Button>
+                              <a href="ticket.aspx?eticket_id=<%=et %>" class="btn white blue-text waves-effect waves-light" >Download E-Ticket</a>
                         </div>
                      
                     </div>
