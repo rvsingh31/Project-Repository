@@ -33,13 +33,14 @@ namespace WebApplication2.agency
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;
                 smtp.Send(mm);
-             }
+           //     ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Email sent.');", true);
+            }
 
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["id"]==null)
+            if(Session["agency_id"]==null)
             {
                 Response.Redirect("index.aspx?m=Login to Continue..");
             }

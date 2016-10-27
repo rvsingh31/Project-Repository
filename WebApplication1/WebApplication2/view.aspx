@@ -204,12 +204,20 @@
            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
    
     <script>
+
+
+        var x = document.getElementById("l").innerHTML;
+        if (x != "") {
+            Materialize.toast(x, 2000, 'rounded');
+        }
+
         $(document).ready(function () {
 
             $('select').material_select();
             $('.modal-trigger').leanModal();
         });
 
+        
 
      
     </script>

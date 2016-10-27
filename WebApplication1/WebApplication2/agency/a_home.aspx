@@ -18,10 +18,15 @@
 </head>
 <body class="blue lighten-4">
     <nav class="blue lighten-1">
-           <ul>
-                <li class="left"><a href="#!"><asp:Label ID="i_lbl" class="white-text" runat="server" Text="Easy Travel"></asp:Label></a></li> 
-               <li class="right">
-                   <a href="#!" class="white-text"><asp:Label ID="a_lbl" runat="server" Text=""></asp:Label></a>
+        <a href="#!"><asp:Label ID="i_lbl" class="white-text left" runat="server" Text="Easy Travel"></asp:Label></a>   
+        <ul class="right">
+                <li>
+                        <a href="#!" class="white-text"><asp:Label ID="a_lbl" runat="server" Text=""></asp:Label></a>
+                 
+                </li>
+               <li>
+                  <a href="logout.aspx" class="white-text">Log Out</a>
+                 
                </li>
            </ul>
     </nav>
@@ -344,16 +349,13 @@
             <div class="col s12 m1">
                 <p></p>
             </div>
-            <div class="col s12 m3 blue darken-1 white-text">
+            <div class="col s12 m3 blue darken-1 white-text" style="height:20em;overflow-y:auto">
                 <h6 class="white-text center"><strong>Enquiries</strong></h6>
                 <br /> 
                 <div class="divider orange lighten-4"></div>
-                <p><span class="yellow-text">RAVINDER SINGH</span> placed an enquiry.</p>
-                  <p>kspofdksf</p>
-                  <p>kspofdksf</p>
-                  <p>kspofdksf</p>
-                  <p>kspofdksf</p>
-                  <p>kspofdksf</p>
+                <div class="white-text" runat="server" id="inquiries_div">
+
+                </div>    
             </div>
 
        </div>

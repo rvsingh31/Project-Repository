@@ -52,9 +52,20 @@ namespace WebApplication2
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Request.QueryString["eticket_id"]==null || Session["id"]==null)
+            
+            if (Request.QueryString["eticket_id"]==null)
             {
-                Response.Redirect("home.aspx?m=Select a booked package to show its e-ticket .");
+                if (Session["id"] != null)
+                {
+                    Response.Redirect("home.aspx?m=Select a booked package to show its e-ticket .");
+
+                }
+                else
+                {
+                    Response.Redirect("index.aspx?m=Login First");
+
+                }
+                
             }
             
             ConnectClass cc = new ConnectClass();
@@ -63,44 +74,46 @@ namespace WebApplication2
             cc.setParameter("@ticket",Request.QueryString["eticket_id"].ToString());
             cc.openConnection();
             SqlDataReader r = cc.getDDLResults();
-            r.Read();
-            string agency_name = r["a_name"].ToString();
-            string agency_contact = r["a_contact"].ToString();
-            string package_name = r["p_name"].ToString();
-            string eticket_id = r["eticket_id"].ToString();
-            int adults = Int32.Parse(r["adults"].ToString());
-            int child = Int32.Parse(r["child"].ToString());
-            string total_cost = r["total_cost"].ToString();
-            string trip_date = r["expiry_date"].ToString();
-            string duration = r["duration"].ToString();
-            r.Close();
-            ArrayList adult_names = new ArrayList();
-            ArrayList child_names = new ArrayList();
-            if (adults>1 || child >0)
+            if(r.Read())
             {
-                cc.setCommand("select name,a_or_c from members where eticket_id=@t");
-                cc.setParameter("@t", Request.QueryString["eticket_id"].ToString());
-                SqlDataReader r1 = cc.getDDLResults();
-                while (r1.Read())
+                string agency_name = r["a_name"].ToString();
+                string agency_contact = r["a_contact"].ToString();
+                string package_name = r["p_name"].ToString();
+                string eticket_id = r["eticket_id"].ToString();
+                int adults = Int32.Parse(r["adults"].ToString());
+                int child = Int32.Parse(r["child"].ToString());
+                string total_cost = r["total_cost"].ToString();
+                string trip_date = r["expiry_date"].ToString();
+                string duration = r["duration"].ToString();
+                r.Close();
+                ArrayList adult_names = new ArrayList();
+                ArrayList child_names = new ArrayList();
+                if (adults > 1 || child > 0)
                 {
-                    if(r1["a_or_c"].ToString()=="child")
+                    cc.setCommand("select name,a_or_c from members where eticket_id=@t");
+                    cc.setParameter("@t", Request.QueryString["eticket_id"].ToString());
+                    SqlDataReader r1 = cc.getDDLResults();
+                    while (r1.Read())
                     {
-                        child_names.Add(r1["name"]);
+                        if (r1["a_or_c"].ToString() == "child")
+                        {
+                            child_names.Add(r1["name"]);
+                        }
+                        else
+                        {
+                            adult_names.Add(r1["name"]);
+                        }
                     }
-                    else
-                    {
-                        adult_names.Add(r1["name"]);
-                    }
+                    r1.Close();
                 }
-                r1.Close();
-            }
-            cc.setCommand("select t_name,t_contact from eticket where eticket_id=@t2");
-            cc.setParameter("@t2", Request.QueryString["eticket_id"].ToString());
-            SqlDataReader r2 = cc.getDDLResults();
-            r2.Read();
-            string t_name = r2["t_name"].ToString();
-            string t_contact = r2["t_contact"].ToString();
+                cc.setCommand("select t_name,t_contact from eticket where eticket_id=@t2");
+                cc.setParameter("@t2", Request.QueryString["eticket_id"].ToString());
+                SqlDataReader r2 = cc.getDDLResults();
+                r2.Read();
+                string t_name = r2["t_name"].ToString();
+                string t_contact = r2["t_contact"].ToString();
 
+          
 
             //------------------------ETICKET_GENERATION STARTS----------------------------
 
@@ -432,6 +445,14 @@ namespace WebApplication2
                 Response.BinaryWrite(bytes);
                 Response.End();
                 Response.Close();
+
+
+                
+              }
+            }
+            else
+            {
+                Response.Redirect("home.aspx?m=Invalid Selection!");
             }
         }
     }

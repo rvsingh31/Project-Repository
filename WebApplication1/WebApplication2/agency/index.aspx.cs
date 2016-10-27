@@ -58,7 +58,7 @@ namespace WebApplication2.agency
             {
                 Session["username"] = rdr["username"];
                 Session["type"] = rdr["type"];
-                Session["id"] = rdr["id"];
+                Session["agency_id"] = rdr["id"];
                 Response.Redirect("a_home.aspx");
             }
             else

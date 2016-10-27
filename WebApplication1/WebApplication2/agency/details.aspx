@@ -42,7 +42,11 @@
                                    <h6 class="blue-text">Adults:&nbsp; <%=ar1[i+3] %> and Children : &nbsp;<%=ar1[i+4] %></h6>     
                                     <br />
                                     <h6 class="blue-text">Total Charges:&nbsp;<%=ar1[i+5] %> </h6>
-                                </div>
+                                
+                                    <a href="ticket.aspx?eticket_id=<%=ar1[i+2] %>" class="btn waves-effect waves-light blue white-text right">Download E-Ticket</a>
+                                <br />
+                                  <br />
+                              </div>
 
 
                       <%     } %>

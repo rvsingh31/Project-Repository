@@ -11,7 +11,9 @@
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
   <style>
-
+      #status_div:hover{
+          cursor:pointer;
+      }
       .dont-break-out {
 
   overflow-wrap: break-word;
@@ -44,7 +46,8 @@
         </nav>
 </div>
     <div class="row">
-
+         <asp:ScriptManager EnablePartialRendering="true" EnablePageMethods="true" ID="ScriptManager1" runat="server" />
+                
         <div class="col s12 m3">
             <div class="row">
 
@@ -71,11 +74,31 @@
                                              <h6 class="blue-text"><span class="teal-text">ADULT:Rs </span><span id="ca" runat="server"></span></h6>
                                              <h6 class="blue-text"><span class="teal-text">CHILD:Rs </span><span id="cc1" runat="server"></span></h6>
                                           </div>
-                                        <br />
+                                        
                                      </div>
                                  </div>
+
                                  <div class="card-action yellow lighten-4">
-                                  </div>
+                                  
+                                       <h6 class="center" id="status_div">
+                                                    <%if (save == "")
+                                                        { %>
+                                                            <span class="purple-text save">SAVE</span>
+                                                               <span  class="saved purple-text text-lighten-3" style="display:none">SAVED</span>
+                                                    <%    }
+                                                        else
+                                                         {   %>
+                                                       
+                                                            <span class="purple-text save" style="display:none">SAVE</span>
+                                                            <span class="purple-text text-lighten-3 saved">SAVED</span>
+                                    
+                                                    <% } %>
+                                                      
+
+                                                </h6> 
+                                             
+                                           
+                                   </div>
                            </div>
     
             </div>
@@ -120,7 +143,7 @@
                             <h6 class="teal-text "><strong>Agency's Contact:</strong></h6>
                            <h6 class="blue-text dont-break-out" id="ac" runat="server"></h6>
 
-                             
+                          <p id="ny" class="blue-text"></p>   
                      </div>
                     
                 </div>
@@ -130,7 +153,6 @@
                 <div class="col s12 m7 card-panel" >
                     <h6 class="teal-text center"><strong>BOOK NOW</strong></h6>
                     <br />
-                 <asp:ScriptManager EnablePartialRendering="true" ID="ScriptManager1" runat="server" />
                 <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">              
                  <ContentTemplate>    
               
@@ -260,11 +282,85 @@
            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
    
     <script>
+        function SendAjax(type) {
+
+           var xmlHttp;
+            xmlHttp = null;
+
+            if (window.XMLHttpRequest) {
+                xmlHttp = new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject) {
+                var strName = "Msxml2.XMLHTTP"
+                if (navigator.appVersion.indexOf("MSIE 5.5") >= 0) {
+                    strName = "Microsoft.XMLHTTP"
+                }
+                try {
+                    xmlHttp = new ActiveXObject(strName);
+                }
+                catch (e) {
+                    return false;
+                }
+            }
+
+            if (xmlHttp != null) {
+           
+
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        var x=xmlHttp.responseText;
+                        if($.trim(x)=="donesaving")
+                        {
+                                
+                                    Materialize.toast('Saved',2000,'rounded');
+                        }
+                        else if($.trim(x)=="doneremoving")
+                        {
+                                    Materialize.toast('Removed from Saved Packages',2000,'rounded');
+                        }
+                        else
+                        {
+                            Materialize.toast('Error Occured ! Try Again Later!',2000,'rounded');
+                            
+                        }
+                    }
+                }
+
+                xmlHttp.open("GET", "getstatus.aspx?type=" +type+"&user="+<%=user%>+"&package="+<%=package%>, true);
+                xmlHttp.send();
+            }
+        }
+
+
+      
         $(document).ready(function () {
 
             $('select').material_select();
         });
 
+
+        $(document).on('click', '#status_div', function () {
+
+            if ($(".saved").is(":visible")) {
+                SendAjax("delete");
+                $(".saved").fadeOut();
+                setTimeout(function () {
+                    $(".save").fadeIn();
+                }, 410);
+               
+            }
+            else {
+           
+                SendAjax("save");
+                $(".save").fadeOut();
+                setTimeout(function () {
+                    $(".saved").fadeIn();
+                }, 400);
+              
+            }
+
+
+        });
 
      
     </script>

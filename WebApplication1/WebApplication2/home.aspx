@@ -27,6 +27,8 @@
 
 
 }
+
+
     </style>
 </head>
 <body class="blue darken-1">
@@ -49,7 +51,7 @@
 		<li class="li_search"> <a  class=" search blue-text text-darken-1"  href="#!">Search Packages</a></li>
         <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">History</a></li>
         <li class="li_account"><a  class="account blue-text text-darken-1" href="#!">Account Settings</a></li>
-		<li><a  class="blue-text text-darken-1" href="#!">Sign Out</a></li>
+		<li><a  class="blue-text text-darken-1" href="logout.aspx">Sign Out</a></li>
     </ul>
 	
 	 <ul id="mobile-demo" class="side-nav yellow purple-text">
@@ -63,7 +65,7 @@
 		<li class="li_search"><a  class="search blue-text text-darken-1"  href="#!">Search Packages</a></li>
         <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">History</a></li>
         <li class="li_account"><a  class=" account blue-text text-darken-1" href="#!">Account Settings</a></li>
-		<li><a  class="blue-text text-darken-1" href="#!">Sign Out</a></li>
+		<li><a  class="blue-text text-darken-1" href="logout.aspx">Sign Out</a></li>
     
 	</ul>
     </div>
@@ -75,9 +77,12 @@
          
             <div class="container">
                 <br />
-                <div id="home" >
-                            <h5 class="yellow-text header light">Best Deals for you!!</h5>
+                <div><a href="inquiry.aspx" class="btn waves-effect right waves-light yellow blue-text">Leave an Inquiry</a></div>
                     <br />
+                <div id="home" >
+                            <h5 class="yellow-text header light"><span>Best Deals for you!!</span></h5>
+                    <br />
+                    
                     <div class="row">
                         <div class="col s12 m1"></div>
                         <% for (y=0; y<ar2.Count;y=y+6)
@@ -117,6 +122,7 @@
                                  </div>
                                  <div class="card-action">
                                     <a href="intr_show_package.aspx?id=<%=ar2[y] %>">VIEW PACKAGE</a>
+                                   
                                   </div>
                            </div>
 
@@ -333,7 +339,7 @@
                                  {
                                  %>
                                                <br />
-                                                <h6 class="white-text center">No packages to show!!</h6>
+                                                <h6 class="white-text center">No packages to show!! <a class="yellow-text" href="inquiry.aspx">Leave an inquiry here</a></h6>
                                <%    
                                  }  %>
 
@@ -387,6 +393,8 @@
                         <div class="card-panel col s12 m5 white">
                             <h5 class="blue-text center">Starred Places</h5>
                             <div class="divider blue"></div>
+                            <div class="collection" id="starred_div" runat="server">
+                            </div>
                             <br />
                         </div>
                     </div>
@@ -562,6 +570,9 @@
 
             });
         }
+
+
+
     </script>
        
    

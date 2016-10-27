@@ -9,6 +9,9 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Connect;
 using System.Collections;
+using System.Web.Services;
+using System.Web.Script.Services;
+using Newtonsoft.Json;
 
 namespace WebApplication2
 {
@@ -16,8 +19,11 @@ namespace WebApplication2
     public partial class WebForm6 : System.Web.UI.Page
     {
         public int ct_ad,ct_ch,i;
+        public string save;
+        public string user, package,x;
 
-        public  void book_package(object sender,CommandEventArgs e)
+        
+        public void book_package(object sender,CommandEventArgs e)
         {
             ct_ad = Int32.Parse(Session["count_adult"].ToString());
             ct_ch = Int32.Parse(Session["count_child"].ToString());
@@ -625,7 +631,12 @@ namespace WebApplication2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["id"]==null)
+            {
+                Response.Redirect("index.aspx?m=Login First!!");
+            }
 
+           
            up.Visible= false;
             final.Visible = false;
             family.Visible = false;
@@ -637,9 +648,11 @@ namespace WebApplication2
             }
 
 
+            user = Session["id"].ToString();
+            package = Session["u_package_id"].ToString();
 
-          
-                    if(Session["count_adult"] != null && Session["count_child"]!=null )
+
+            if (Session["count_adult"] != null && Session["count_child"]!=null )
                 {
                     ct_ad = Int32.Parse(Session["count_adult"].ToString());
                     ct_ch = Int32.Parse(Session["count_child"].ToString());
@@ -706,7 +719,23 @@ namespace WebApplication2
             string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
             im1.ImageUrl = "data:image/png;base64," + base64String; ;
 
+            r.Close();
 
+            cc.setCommand("select * from starred where user_id=@user_id and p_id=@p_id");
+            cc.setParameter("@user_id",Session["id"].ToString());
+            cc.setParameter("@p_id",Session["u_package_id"].ToString());
+            SqlDataReader r1 = cc.getDDLResults();
+
+            if (r1.Read())
+            {
+                save = "none";
+               
+            }
+            else
+            {
+                save = "";
+       
+            }
         }
     }
 }

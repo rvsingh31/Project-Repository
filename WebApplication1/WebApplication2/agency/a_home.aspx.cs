@@ -25,7 +25,7 @@ namespace WebApplication2.agency
        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] != null)
+            if(Session["agency_id"]!=null)
             {
                 a_lbl.Text = (string)Session["username"];
             }
@@ -41,7 +41,7 @@ namespace WebApplication2.agency
                 error_lbl.Text = str2;
             }
 
-            int i = Int32.Parse(Session["id"].ToString());
+            int i = Int32.Parse(Session["agency_id"].ToString());
             string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
 
             SqlConnection conn = new SqlConnection(constr);
@@ -97,7 +97,7 @@ namespace WebApplication2.agency
                 }
                 r.Close();
                 cc.setCommand("select p_name,booked_packages.p_id,COUNT(user_id) as users from package_details join booked_packages on(package_details.p_id=booked_packages.p_id) where booked_packages.status='booked' and package_details.a_id=(select a_id from agency_details where user_id=@a_id) group by booked_packages.p_id,package_details.p_name");
-                cc.setParameter("@a_id",Session["id"].ToString());
+                cc.setParameter("@a_id",Session["agency_id"].ToString());
                 SqlDataReader r2 = cc.getDDLResults();
                 ar3 = new ArrayList();
                 while (r2.Read())
@@ -110,7 +110,7 @@ namespace WebApplication2.agency
                 r2.Close();
               
                 cc.setCommand("select firstname,lastname,booked_packages.p_id,user_id,p_name from (users join booked_packages on (booked_packages.user_id=users.Id)) join package_details on (booked_packages.p_id=package_details.p_id) where booked_packages.status='cancelled' and package_details.a_id=(select a_id from agency_details where user_id=@w)");
-                cc.setParameter("@w",Session["id"].ToString());
+                cc.setParameter("@w",Session["agency_id"].ToString());
                 SqlDataReader r3 = cc.getDDLResults();
                 ar4 = new ArrayList();
                 while(r3.Read())
@@ -119,7 +119,14 @@ namespace WebApplication2.agency
                     ar4.Add(r3["p_name"]);
                     ar4.Add("p_id="+r3["p_id"].ToString()+"&user_id="+r3["user_id"].ToString());
                 }
+                r3.Close();
 
+                cc.setCommand("select user_id,enq_id,location from inquiries where status='enquired'");
+                SqlDataReader r4 = cc.getDDLResults();
+                while(r4.Read())
+                {
+                    inquiries_div.InnerHtml += "<h6><a class='white-text' href='intr_sess.aspx?type=inq&user_id="+r4["user_id"]+"&enq_id="+r4["enq_id"]+"'>Inquiry about "+r4["location"]+"</a></h6><div class='divider white'></div><br/>";
+                }
                 cc.closeConnection();
 
             }       
@@ -144,7 +151,7 @@ namespace WebApplication2.agency
             cc.setConnection();
             cc.setCommand("update agency_details set a_name=@n where user_id=@l");
             cc.setParameter("@n",n);
-            cc.setParameter("@l",Session["id"].ToString());
+            cc.setParameter("@l",Session["agency_id"].ToString());
             cc.openConnection();
             int ad = cc.getDMLResults();
             if(ad>0)
@@ -165,7 +172,7 @@ namespace WebApplication2.agency
             cc.setConnection();
             cc.setCommand("update agency_details set a_address=@n where user_id=@l");
             cc.setParameter("@n", n);
-            cc.setParameter("@l", Session["id"].ToString());
+            cc.setParameter("@l", Session["agency_id"].ToString());
             cc.openConnection();
             int ad = cc.getDMLResults();
             if (ad > 0)
@@ -186,7 +193,7 @@ namespace WebApplication2.agency
             cc.setConnection();
             cc.setCommand("update agency_details set a_contact=@n where user_id=@l");
             cc.setParameter("@n", n);
-            cc.setParameter("@l", Session["id"].ToString());
+            cc.setParameter("@l", Session["agency_id"].ToString());
             cc.openConnection();
             int ad = cc.getDMLResults();
             if (ad > 0)
@@ -207,7 +214,7 @@ namespace WebApplication2.agency
             cc.setConnection();
             cc.setCommand("update agency_details set a_description=@n where user_id=@l");
             cc.setParameter("@n", n);
-            cc.setParameter("@l", Session["id"].ToString());
+            cc.setParameter("@l", Session["agency_id"].ToString());
             cc.openConnection();
             int ad = cc.getDMLResults();
             if (ad > 0)
@@ -247,7 +254,7 @@ namespace WebApplication2.agency
             ConnectClass cc = new ConnectClass();
 
             cc.setConnection();
-            int i = Int32.Parse(Session["id"].ToString());
+            int i = Int32.Parse(Session["agency_id"].ToString());
             cc.setCommand("select a_id from agency_details where user_id=@e");
             cc.setParameter("@e",i.ToString());
             cc.openConnection();
@@ -308,7 +315,7 @@ namespace WebApplication2.agency
             string f2 =desc.Text;
             string f3 =address.Text;
             string f4 =a_contact.Text;
-            string f5 = Session["id"].ToString();
+            string f5 = Session["agency_id"].ToString();
 
             string constr = WebConfigurationManager.ConnectionStrings["database"].ConnectionString;
 

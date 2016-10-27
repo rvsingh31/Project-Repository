@@ -180,12 +180,18 @@
     <Content Include="agency\a_home.aspx" />
     <Content Include="agency\intr_sess.aspx" />
     <Content Include="agency\edit_package.aspx" />
+    <Content Include="agency\logout.aspx" />
     <Content Include="agency\refund.aspx" />
+    <Content Include="agency\respond.aspx" />
+    <Content Include="agency\ticket.aspx" />
     <Content Include="App_Data\travel.mdf" />
     <Content Include="App_Data\travel_log.ldf">
       <DependentUpon>travel.mdf</DependentUpon>
     </Content>
     <Content Include="agency\details.aspx" />
+    <Content Include="getstatus.aspx" />
+    <Content Include="inquiry.aspx" />
+    <Content Include="logout.aspx" />
     <Content Include="ticket.aspx" />
     <Content Include="view.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -386,12 +392,33 @@
     <Compile Include="agency\edit_package.aspx.designer.cs">
       <DependentUpon>edit_package.aspx</DependentUpon>
     </Compile>
+    <Compile Include="agency\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agency\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="agency\refund.aspx.cs">
       <DependentUpon>refund.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="agency\refund.aspx.designer.cs">
       <DependentUpon>refund.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agency\respond.aspx.cs">
+      <DependentUpon>respond.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agency\respond.aspx.designer.cs">
+      <DependentUpon>respond.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agency\ticket.aspx.cs">
+      <DependentUpon>ticket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agency\ticket.aspx.designer.cs">
+      <DependentUpon>ticket.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -403,6 +430,27 @@
     </Compile>
     <Compile Include="agency\details.aspx.designer.cs">
       <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="getstatus.aspx.cs">
+      <DependentUpon>getstatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="getstatus.aspx.designer.cs">
+      <DependentUpon>getstatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="inquiry.aspx.cs">
+      <DependentUpon>inquiry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inquiry.aspx.designer.cs">
+      <DependentUpon>inquiry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="ticket.aspx.cs">
       <DependentUpon>ticket.aspx</DependentUpon>

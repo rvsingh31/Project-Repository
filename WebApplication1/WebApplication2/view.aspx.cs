@@ -34,6 +34,11 @@ namespace WebApplication2
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if(Request.QueryString["m"]!=null)
+            {
+                l.InnerText = Request.QueryString["m"].ToString();
+            }
+
             if (Session["cancel_package_id"] == null)
             {
                 Response.Redirect("home.aspx?m=Select a package first");

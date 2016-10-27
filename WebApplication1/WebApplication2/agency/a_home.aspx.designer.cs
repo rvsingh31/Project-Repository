@@ -490,6 +490,15 @@ namespace WebApplication2.agency {
         protected global::System.Web.UI.WebControls.Button add_package_btn;
         
         /// <summary>
+        /// inquiries_div control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl inquiries_div;
+        
+        /// <summary>
         /// pm2 control.
         /// </summary>
         /// <remarks>

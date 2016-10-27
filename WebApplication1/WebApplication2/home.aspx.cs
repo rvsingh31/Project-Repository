@@ -144,6 +144,13 @@ namespace WebApplication2
             }
             rw2.Close();
 
+            cc.setCommand("select p_name,package_details.p_id from package_details join starred on (package_details.p_id=starred.p_id) where user_id ="+Session["id"].ToString());
+            SqlDataReader rw3 = cc.getDDLResults();
+            while(rw3.Read())
+            {
+                starred_div.InnerHtml+= "<a href='intr_show_package?id="+rw3["p_id"]+"' class='collection-item'>"+rw3["p_name"]+"</a>";
+            }
+
         }
 
         protected void Changes(object sender,CommandEventArgs e)

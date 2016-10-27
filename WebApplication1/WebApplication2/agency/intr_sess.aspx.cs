@@ -12,6 +12,33 @@ namespace WebApplication2.agency
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["agency_id"] == null)
+            {
+                Response.Redirect("index.aspx?m=Login First!!");
+            }
+
+
+            if (Request.QueryString["type"] != null && Request.QueryString["type"].ToString()=="inq")
+            {
+                if (Request.QueryString["user_id"] == null || Request.QueryString["enq_id"] == null)
+                {
+                    if (Session["agency_id"] == null)
+                    {
+                        Response.Redirect("index.aspx?m=Login First!!");
+                    }
+                    else
+                    {
+                        Response.Redirect("a_home.aspx?m=Select an inquiry first!!");
+                    }
+                }
+                else
+                {
+                    Session["enq_user_id"] = Request.QueryString["user_id"];
+                    Session["enq_id"] = Request.QueryString["enq_id"];
+                    Response.Redirect("respond.aspx");
+                }
+            }
+
             if (Request.QueryString["type"] != null && Request.QueryString["type"]=="show")
             {
                 string p_id = Request.QueryString["p_id"].ToString();
