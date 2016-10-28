@@ -45,14 +45,14 @@ namespace WebApplication2
                         {
                             int j = i + 1;
                             // string input = (UpdatePanel1.ContentTemplateContainer.FindControl("adult_input" + (i + 1)) as TextBox).Text;
-                            string input = ((TextBox)UpdatePanel1.FindControl("ph").FindControl("adult_input" + j.ToString())).Text;
+                           string input = ((TextBox)UpdatePanel1.FindControl("ph1").FindControl("adult_input" + j.ToString())).Text;
                             adults.Add(input);
                           }
 
                           for (int i = 0; i < ct_ch; i++)
                           {
                             int j = i + 1;
-                            string input = ((TextBox)UpdatePanel1.FindControl("ph").FindControl("child_input" + j.ToString())).Text;
+                            string input = ((TextBox)UpdatePanel1.FindControl("ph1").FindControl("child_input" + j.ToString())).Text;
                             children.Add(input);
                           }
 
@@ -98,7 +98,7 @@ namespace WebApplication2
                                     cc2.setParameter("@et",et);
                                     cc2.setParameter("@name",x);
                                     cc2.openConnection();
-                                    int c = cc.getDMLResults();
+                                    int c = cc2.getDMLResults();
                                     cc2.closeConnection();
                                     if (c>0)
                                     {
@@ -129,7 +129,7 @@ namespace WebApplication2
                                         cc3.setParameter("@et", et);
                                         cc3.setParameter("@name", x);
                                         cc3.openConnection();
-                                        int c = cc.getDMLResults();
+                                        int c = cc3.getDMLResults();
                                         cc3.closeConnection();
                                         if (c > 0)
                                         {
@@ -485,11 +485,12 @@ namespace WebApplication2
                     TextBox tb = new TextBox();
                     tb.ID = "adult_input"+(i+1);
                     tb.CssClass = "blue-text";
+                    
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
                     ph.Controls.Add(lb);
-                    ph.Controls.Add(tb);        
-                }
+                    ph.Controls.Add(tb);
+                    }
 
 
                  for (int i = 0; i < ct_ch; i++)
@@ -500,12 +501,13 @@ namespace WebApplication2
                     TextBox tb = new TextBox();
                     tb.ID = "child_input" + (i + 1);
                     tb.CssClass = "blue-text";
+
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                    
                     ph.Controls.Add(lb);
                     ph.Controls.Add(tb);
-
-                }
+                     }
                 old_traveller.Visible = true;
             }
             else if (Session["traveller"] != null && Session["traveller"].ToString() == "no")
@@ -523,11 +525,11 @@ namespace WebApplication2
                     TextBox tb = new TextBox();
                     tb.ID = "adult_input" + (i + 1);
                     tb.CssClass = "blue-text";
+                    
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
                     ph1.Controls.Add(lb);
                     ph1.Controls.Add(tb);
-
                 }
 
 
@@ -539,6 +541,7 @@ namespace WebApplication2
                     TextBox tb = new TextBox();
                     tb.ID = "child_input" + (i + 1);
                     tb.CssClass = "blue-text";
+                    
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
                     UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
                     ph1.Controls.Add(lb);
@@ -631,6 +634,8 @@ namespace WebApplication2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ct_ad = 0;
+            ct_ch = 0;
             if(Session["id"]==null)
             {
                 Response.Redirect("index.aspx?m=Login First!!");
@@ -651,47 +656,104 @@ namespace WebApplication2
             user = Session["id"].ToString();
             package = Session["u_package_id"].ToString();
 
+             if (Session["count_adult"] != null && Session["count_child"]!=null )
+                 {
+                     ct_ad = Int32.Parse(Session["count_adult"].ToString());
+                     ct_ch = Int32.Parse(Session["count_child"].ToString());
 
-            if (Session["count_adult"] != null && Session["count_child"]!=null )
-                {
-                    ct_ad = Int32.Parse(Session["count_adult"].ToString());
-                    ct_ch = Int32.Parse(Session["count_child"].ToString());
+                 if(Session["traveller"].ToString()=="yes")
+                 {
+                     for (int i = 0; i < ct_ad; i++)
+                     {
 
-                    for (int i = 0; i < ct_ad; i++)
-                    {
-                        Label lb = new Label();
-                        lb.Text = "Adult" + (i + 1);
-                        lb.CssClass = "blue-text";
-                        TextBox tb = new TextBox();
-                        tb.ID = "adult_input" + (i + 1);
-                        tb.CssClass = "blue-text";
-                        UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
-                        UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
-                        ph.Controls.Add(lb);
-                        ph.Controls.Add(tb);
+                         Label lb = new Label();
+                         lb.Text = "Adult" + (i + 1);
+                         lb.CssClass = "blue-text";
+                         TextBox tb = new TextBox();
+                         tb.ID = "adult_input" + (i + 1);
+                         tb.CssClass = "blue-text";
+                            
 
-                    }
-
-
-                    for (int i = 0; i < ct_ch; i++)
-                    {
-                        Label lb = new Label();
-                        lb.Text = "Child" + (i + 1);
-                        lb.CssClass = "blue-text";
-                        TextBox tb = new TextBox();
-                        tb.ID = "child_input" + (i + 1);
-                        tb.CssClass = "blue-text";
-                        UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
-                        UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
-                        ph.Controls.Add(lb);
-                        ph.Controls.Add(tb);
-
-                    }
-
-                }
-          
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                         ph.Controls.Add(lb);
+                         ph.Controls.Add(tb);
+                     }
 
 
+                     for (int i = 0; i < ct_ch; i++)
+                     {
+                         Label lb = new Label();
+                         lb.Text = "Child" + (i + 1);
+                         lb.CssClass = "blue-text";
+                         TextBox tb = new TextBox();
+                         tb.ID = "child_input" + (i + 1);
+                         tb.CssClass = "blue-text";
+                            
+
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                        
+                         ph.Controls.Add(lb);
+                         ph.Controls.Add(tb);
+                      }
+                 }
+                 else if(Session["traveller"].ToString()=="no")
+                 {
+                     for (int i = 0; i < ct_ad; i++)
+                     {
+
+                         Label lb = new Label();
+                         lb.Text = "Adult" + (i + 1);
+                         lb.CssClass = "blue-text";
+                         TextBox tb = new TextBox();
+                         tb.ID = "adult_input" + (i + 1);
+                         tb.CssClass = "blue-text";
+                            
+
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                         ph1.Controls.Add(lb);
+                         ph1.Controls.Add(tb);
+                      }
+
+
+                     for (int i = 0; i < ct_ch; i++)
+                     {
+                         Label lb = new Label();
+                         lb.Text = "Child" + (i + 1);
+                         lb.CssClass = "blue-text";
+                         TextBox tb = new TextBox();
+                         tb.ID = "child_input" + (i + 1);
+                         tb.CssClass = "blue-text";
+
+                         RequiredFieldValidator reqFieldVal = new RequiredFieldValidator();
+                         reqFieldVal.ControlToValidate = "child_input" + (i + 1);
+                         reqFieldVal.SetFocusOnError = true;
+                         reqFieldVal.ErrorMessage = "Required";
+                         reqFieldVal.EnableClientScript = false;
+                         reqFieldVal.CssClass = "required";
+                         reqFieldVal.ValidationGroup = "vg1";
+                         reqFieldVal.Enabled = true;
+
+
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
+                         UpdatePanel1.ContentTemplateContainer.Controls.Add(reqFieldVal);
+
+                         ph1.Controls.Add(lb);
+                         ph1.Controls.Add(tb);
+                         ph1.Controls.Add(reqFieldVal);
+                         reqFieldVal.Validate();
+                     }
+                 }
+
+
+                 }
+
+
+
+       
 
 
             ConnectClass cc = new ConnectClass();

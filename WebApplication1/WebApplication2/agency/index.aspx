@@ -47,15 +47,18 @@
 		           <div class="input-field">
                         <asp:Label ID="ulabel" runat="server" class="white-text text-darken-2" Text="Username"></asp:Label>
                         <asp:TextBox ID="uname" runat="server" class="white-text text-darken-2"></asp:TextBox>
-                    </div>
+                       <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="uname" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr1"></asp:RequiredFieldValidator> 
+                   </div>
                     <div class="input-field">
                         <asp:Label ID="plabel" runat="server" class="white-text text-darken-2" Text="Password"></asp:Label>
                         <asp:TextBox ID="passwd" type="password" runat="server" class="white-text text-darken-2"></asp:TextBox>
+                       <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="passwd" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr1"></asp:RequiredFieldValidator> 
+             
                     </div>
                     
                      <br />
         	
-                   <asp:Button ID="login_btn" runat="server" Text="Login" display="none" class="btn waves-effect waves-light white darken-2 blue-text" OnClick="login_btn_Click" />               
+                   <asp:Button ID="login_btn" runat="server" UseSubmitBehavior="true" ValidationGroup="vgr1" Text="Login" display="none" class="btn waves-effect waves-light white darken-2 blue-text" OnClick="login_btn_Click" />               
             </asp:Panel>
 
      
@@ -65,41 +68,56 @@
         <div class="input-field">
             <asp:Label ID="fnlbl" runat="server" class="white-text text-darken-2" Text="First Name"></asp:Label>
             <asp:TextBox ID="fname" runat="server" class="white-text text-darken-2"></asp:TextBox>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="fname" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr2"></asp:RequiredFieldValidator> 
+             
         </div>
                 
         <div class="input-field">
             <asp:Label ID="lnlbl" runat="server" class="white-text text-darken-2" Text="Last Name"></asp:Label>
             <asp:TextBox ID="lname" runat="server" class="white-text text-darken-2"></asp:TextBox>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="lname" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr2"></asp:RequiredFieldValidator> 
+        
         </div>
 
         <div class="input-field">
             <asp:Label ID="unlbl" runat="server" class="white-text text-darken-2" Text="UserName"></asp:Label>
             <asp:TextBox ID="uname_r" runat="server" class="white-text text-darken-2"></asp:TextBox>
-        </div>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="uname_r" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr2"></asp:RequiredFieldValidator> 
+  </div>
 
         <div class="input-field">
             <asp:Label ID="passlbl" runat="server" class="white-text text-darken-2" Text="Password"></asp:Label>
             <asp:TextBox ID="pass" Type="password" runat="server" class="white-text text-darken-2"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="pass" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr2"></asp:RequiredFieldValidator> 
         </div>
 
         <div class="input-field">
             <asp:Label ID="repasslbl" runat="server" class="white-text text-darken-2" Text="Password(Again)"></asp:Label>
             <asp:TextBox ID="repass" Type="password" runat="server" class="teal-text"></asp:TextBox>
+               
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="repass" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr2"></asp:RequiredFieldValidator> 
+            <asp:CompareValidator ID="CompareValidator1" ValidationGroup="vgr2" ControlToValidate="repass" ControlToCompare="pass" runat="server" ErrorMessage="Password doesn't match"></asp:CompareValidator>
         </div>
 
         <div class="input-field">
             <asp:Label ID="conlbl" runat="server" class="white-text text-darken-2" Text="Contact"></asp:Label>
             <asp:TextBox ID="contact" runat="server" class="white-text text-darken-2"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="contact" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr2"></asp:RequiredFieldValidator> 
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="contact" ValidationGroup="vgr2" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+      
         </div>
 
         <div class="input-field">
             <asp:Label ID="maillbl" runat="server" class="white-text text-darken-2" Text="Mail-id"></asp:Label>
             <asp:TextBox ID="mail" runat="server" class="white-text text-darken-2"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="mail" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr2"></asp:RequiredFieldValidator>  
+                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="mail" ValidationGroup="vgr2" ValidationExpression="\w+([­+.']\w+)*@\w+([­.]\w+)*\.\w+([­.]\w+)*" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+    
         </div>
 
 
 
-               <asp:Button ID="register_btn" runat="server" Text="Register" class="btn waves-effect waves-light white darken-2 blue-text" OnClick="register_btn_Click"/>
+               <asp:Button ID="register_btn" runat="server" ValidationGroup="vgr2" UseSubmitBehavior="true" Text="Register" class="btn waves-effect waves-light white darken-2 blue-text" OnClick="register_btn_Click"/>
             
         </div>
         

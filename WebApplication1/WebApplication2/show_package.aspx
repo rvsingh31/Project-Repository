@@ -189,14 +189,18 @@
                                   <div class="col s12 m6 input-field">
                                       <asp:Label ID="l3" class="blue-text" runat="server">How many adults are travelling?(excluding you)</asp:Label>
                                          <asp:TextBox runat="server" ID="ad_count" class="blue-text" placeholder="Adults"></asp:TextBox>               
-                                   </div>
+                              <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="ad_count" ValidationGroup="vg3" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                         
+                                  </div>
                                    <div class="col s12 m6 input-field">
                                       <asp:Label ID="Label3" class="blue-text" runat="server">How many children are travelling?</asp:Label>
                                           <asp:TextBox runat="server" ID="ch_count" class="blue-text" placeholder="Children"></asp:TextBox>
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="ch_count" ValidationGroup="vg3" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                      
                                    </div>    
                               </div>
                             <br />
-                             <asp:Button id="Button2" OnClick="b3_click" runat="server" class="btn waves-effect waves-light yellow blue-text" Text="Proceed"></asp:Button>
+                             <asp:Button id="Button2" OnClick="b3_click" ValidationGroup="vg3" UseSubmitBehavior="true" runat="server" class="btn waves-effect waves-light yellow blue-text" Text="Proceed"></asp:Button>
                             
                         </div>
                      <br />
@@ -221,14 +225,14 @@
                               <h6 class="teal-text center"><strong>Provide the following details</strong></h6>
                         <asp:Label runat="server" ID="l2" Text="Booking For:(Name) " class="blue-text"></asp:Label>
                         <asp:TextBox runat="server" ID="traveller_name" class="blue-text"></asp:TextBox>
-
                         <asp:Label runat="server" ID="Label2" Text="Contact number of respective person" class="blue-text"></asp:Label>
                         <asp:TextBox runat="server" ID="traveller_contact" class="blue-text"></asp:TextBox> 
+                     
                           <!-- DYNAMIC ROWS  -->  
                          <asp:panel ID="ph1" runat="server"></asp:panel>
                        
                         <br />
-                        <asp:Button id="new_tr_btn" OnCommand="book_package" CommandArgument="new" runat="server" class="btn waves-effect waves-light yellow blue-text" Text="Book Package"></asp:Button>
+                        <asp:Button id="new_tr_btn" OnCommand="book_package"  CommandArgument="new" runat="server" class="btn waves-effect waves-light yellow blue-text" Text="Book Package"></asp:Button>
                      
                        
                     </div>
@@ -282,6 +286,7 @@
            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
    
     <script>
+     
         function SendAjax(type) {
 
            var xmlHttp;
@@ -362,6 +367,82 @@
 
         });
 
+
+
+        function check(x,y)
+        {
+            var x,y;   
+            <% 
+        if(Session["count_adult"]!=null && Session["count_child"]!=null)
+        {
+            %>
+            
+             x=<%=Session["count_adult"].ToString()%>;
+            y=<%=Session["count_child"].ToString()%>;
+            <%
+        }
+        %>
+         
+            alert(x+" "+y);
+            var ct1=0;
+            var ct2=0;
+            for(var i=0;i<x;i++)
+            {
+                alert("in");
+                var ele="adult_input"+(i+1);
+                var value=document.getElementById(ele).value;
+                if(value=="")
+                {
+                    Materialize.toast('Fill all the details',2000,'rounded');
+                    return false;
+                }
+                else
+                {
+                    ct1++;
+                }
+            }
+            
+            for(var i=0;i<y;i++)
+            {
+                alert("in2");
+                var ele="child_input"+(i+1);
+                var value=document.getElementById(ele).value;
+                if(value!="")
+                {
+                    Materialize.toast('Fill all the details',2000,'rounded');
+                    return false;
+                }
+                else{
+                    ct2++;
+                }
+            }
+
+            if((ct1==x) && (ct2==y))
+            {
+                return true;
+            }
+            else
+            {
+             return false;
+            }
+           
+        }
+
+        function get_Value(){
+         
+            <% 
+        if(Session["count_adult"]!=null && Session["count_child"]!=null)
+        {
+            %>
+            
+             x=parseint(<%=Session["count_adult"]%>);
+            y=parseint(<%=Session["count_child"]%>);
+            <%
+        }
+        %>
+            alert("calling check");
+            return check(x,y);
+        }
      
     </script>
 </body>

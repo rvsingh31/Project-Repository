@@ -89,10 +89,11 @@
                                           <div class="input-field">
                                               <asp:Label ID="ch_n_lbl" runat="server" class="blue-text " Text="New Name"></asp:Label> 
                                               <asp:TextBox ID="new_name" class="blue-text" runat="server"></asp:TextBox>
+                                              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="new_name" ValidationGroup="g1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
                                           </div>
                                       
                                         <div>
-                                                <asp:Button ID="save_name" class="btn blue lighten-1 white-text" runat="server" Text="Update"  OnClick="Save_Name_Click"/>
+                                                <asp:Button ID="save_name" ValidationGroup="g1" UseSubmitBehavior="true" class="btn blue lighten-1 white-text" runat="server" Text="Update"  OnClick="Save_Name_Click"/>
                                        &nbsp;&nbsp;  
                                              <button id="reset_name" class="btn blue lighten-1 white-text" type="reset">Cancel</button>
                              
@@ -114,10 +115,12 @@
                                           <div class="input-field">
                                               <asp:Label ID="ch_a_lbl" runat="server" class="blue-text " Text="New Address"></asp:Label> 
                                               <asp:TextBox ID="new_address" class="blue-text" runat="server"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="new_address" ValidationGroup="g2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                        
                                           </div>
                                      
                                         <div>
-                                                <asp:Button ID="Button1" class="btn blue lighten-1 white-text " runat="server" Text="Update"  OnClick="Save_Address_Click"/>
+                                                <asp:Button ID="Button1" class="btn blue lighten-1 white-text " ValidationGroup="g2" UseSubmitBehavior="true" runat="server" Text="Update"  OnClick="Save_Address_Click"/>
                                          &nbsp;&nbsp;  
                                                     <button id="reset_address" class="btn blue lighten-1 white-text " type="reset">Cancel</button>
                              
@@ -140,10 +143,13 @@
                                           <div class="input-field">
                                               <asp:Label ID="ch_c_lbl" runat="server" class="blue-text " Text="New Contact"></asp:Label> 
                                               <asp:TextBox ID="new_contact" class="blue-text" runat="server"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="new_contact" ValidationGroup="g3" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+ <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="new_contact" ValidationGroup="g3" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+      
                                           </div>
                                  
                                         <div>
-                                                <asp:Button ID="Button2" class="btn blue lighten-1 white-text " runat="server" Text="Update"  OnClick="Save_Contact_Click" />
+                                                <asp:Button ID="Button2" class="btn blue lighten-1 white-text " UseSubmitBehavior="true" runat="server" Text="Update"  ValidationGroup="g4" OnClick="Save_Contact_Click" />
                                              &nbsp;&nbsp;      
                                             <button id="reset_contact" class="btn blue lighten-1 white-text " type="reset">Cancel</button>
                              
@@ -164,10 +170,12 @@
                                           <div class="input-field">
                                               <asp:Label ID="ch_de_lbl" runat="server" class="blue-text " Text="New Description"></asp:Label> 
                                               <asp:TextBox ID="new_description" class="blue-text" runat="server"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="new_description" ValidationGroup="g4" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                        
                                           </div>
                                      
                                         <div>
-                                                <asp:Button ID="Button3" class="btn blue lighten-1 white-text " runat="server" Text="Update"  OnClick="Save_Description_Click"/>
+                                                <asp:Button ID="Button3" class="btn blue lighten-1 white-text " ValidationGroup="g4" UseSubmitBehavior="true" runat="server" Text="Update"  OnClick="Save_Description_Click"/>
                                              &nbsp;&nbsp;      
                                             <button id="reset_description" class="btn blue lighten-1 white-text " type="reset">Cancel</button>
                              
@@ -234,52 +242,75 @@
                              <div class="input-field col s12">
                                 <asp:Label ID="pname_lbl" runat="server" class="white-text" Text="Package Name"></asp:Label>
                                 <asp:TextBox ID="pname" runat="server" class="white-text"></asp:TextBox>
-                            </div>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ValidationGroup="g4" ControlToValidate="pname" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                             </div>
                              <div class="input-field col s12">
                                 <asp:Label ID="p_desc_lbl" runat="server" class="white-text" Text="Package Description"></asp:Label>
                                 <asp:TextBox ID="pdesc" runat="server" class="white-text"></asp:TextBox>
-                            </div>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="g4" ControlToValidate="pdesc" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                     
+                             </div>
                               <div class="input-field col s12">
                                 <asp:Label ID="cost_a_lbl" runat="server" class="white-text" Text="Charges(Per Adult)"></asp:Label>
                                 <asp:TextBox ID="a_cost" runat="server" class="white-text"></asp:TextBox>
-                            </div>
+                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="g4" ControlToValidate="a_cost" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="a_cost" ValidationGroup="g4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
+                              </div>
                               <div class="input-field col s12">
                                 <asp:Label ID="cost_c_lbl" runat="server" class="white-text" Text="Charges(Per Child)"></asp:Label>
                                 <asp:TextBox ID="c_cost" runat="server" class="white-text"></asp:TextBox>
-                            </div>
+                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ValidationGroup="g4" ControlToValidate="c_cost" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="c_cost" ValidationGroup="g4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
+                              </div>
                               <div class="input-field col s12">
                                 <asp:Label ID="limit_lbl" runat="server" class="white-text" Text="Limit of Users"></asp:Label>
                                 <asp:TextBox ID="limit" runat="server" class="white-text"></asp:TextBox>
-                            </div>
+                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ValidationGroup="g4" ControlToValidate="limit" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                         <asp:RegularExpressionValidator ID="RegularExpressionValidator4" ControlToValidate="limit" ValidationGroup="g4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+   
+                              </div>
                               <div class="input-field col s12">
                                 <asp:Label ID="venue_lbl" runat="server" class="white-text" Text="Location"></asp:Label>
                                 <asp:TextBox ID="location" runat="server" class="white-text"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ValidationGroup="g4" ControlToValidate="location" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           
                             </div>
                               <div class="col s12">
                                 <asp:Label ID="duration_lbl" runat="server" class="white-text" Text="Package Duration"></asp:Label>
                                   <div class="row">
                                         <div class="input-field col s6 ">
                                             <asp:TextBox ID="days" runat="server" placeholder="Days" class="white-text"></asp:TextBox>
+                                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator11" ValidationGroup="g4" ControlToValidate="days" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           <asp:RegularExpressionValidator ID="RegularExpressionValidator5" ControlToValidate="days" ValidationGroup="g4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
                                        </div>
                                        <div class="input-field col s6 ">
                                            <asp:TextBox ID="nights" runat="server" placeholder="Nights"  class="white-text"></asp:TextBox>
+                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator12" ValidationGroup="g4" ControlToValidate="nights" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           <asp:RegularExpressionValidator ID="RegularExpressionValidator6" ControlToValidate="nights" ValidationGroup="g4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
                                        </div>
                                   </div>
                               </div>
                               <div class="input-field col s12">
                                 <asp:Label ID="exp_lbl" runat="server" class="white-text" Text="Trip Date"></asp:Label>
                                   <asp:TextBox ID="expiry_date" class="datepicker" runat="server"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" ValidationGroup="g4" ControlToValidate="expiry_date" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           
                             </div>
                               <br />
                               <div class="col s12 ">
                               <asp:Label runat="server" Text="Upload Image (Only JPEG accepted)" class="white-text"></asp:Label>
                               <br />
                             <asp:FileUpload runat="server" ID="f1" ></asp:FileUpload>
-                              
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" ValidationGroup="g4" ControlToValidate="f1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           
                                   <br />
                               <br />
                               </div>
-                                  <asp:Button ID="add_package_btn" class="btn white blue-text waves-effect waves-light" runat="server" Text="Add" OnClick="Add_Package_Click" />
+                                  <asp:Button ID="add_package_btn" UseSubmitBehavior="true" ValidationGroup="g4" class="btn white blue-text waves-effect waves-light" runat="server" Text="Add" OnClick="Add_Package_Click" />
                               <br />
                            </div>
 

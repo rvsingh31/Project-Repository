@@ -108,9 +108,10 @@
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Name"></asp:Label>
                                 <asp:TextBox id="name_field" runat="server" class="white-text"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="g1" ControlToValidate="name_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
                             </div>   
                             <br />
-                            <asp:Button ID="name_btn" OnCommand="Update_Event" CommandArgument="name_div" runat="server" class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                            <asp:Button ID="name_btn" ValidationGroup="g1" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="name_div" runat="server" class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
                                &nbsp;
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />
@@ -125,9 +126,11 @@
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Description"></asp:Label>
                                 <asp:TextBox id="desc_field" runat="server" class="white-text"></asp:TextBox>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="g2" ControlToValidate="desc_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
                             </div>   
                             <br />
-                            <asp:Button ID="desc_btn" runat="server" OnCommand="Update_Event" CommandArgument="description_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                            <asp:Button ID="desc_btn" runat="server" ValidationGroup="g2" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="description_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
                                &nbsp;
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />
@@ -146,15 +149,23 @@
                                 <div class="row">
                                         <div class="input-field col s6 ">
                                             <asp:TextBox ID="adult_field" runat="server" placeholder="ADULT" class="white-text"></asp:TextBox>
-                                       </div>
+                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="g3" ControlToValidate="adult_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
+                                                   <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="adult_field" ValidationGroup="g3" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
+                                        </div>
                                        <div class="input-field col s6 ">
                                            <asp:TextBox ID="child_field" runat="server" placeholder="CHILD"  class="white-text"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="g3" ControlToValidate="child_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
+                                       <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="child_field" ValidationGroup="g3" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
                                        </div>
                                 </div>
                                 
                               </div>   
                             <br />
-                            <asp:Button ID="contact_btn" runat="server" OnCommand="Update_Event" CommandArgument="cost_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                            <asp:Button ID="contact_btn" runat="server" ValidationGroup="g3" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="cost_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
                                &nbsp;
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />   
@@ -171,15 +182,23 @@
                                 <div class="row">
                                         <div class="input-field col s6 ">
                                             <asp:TextBox ID="days_field" runat="server" placeholder="Days" class="white-text"></asp:TextBox>
-                                       </div>
+                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ValidationGroup="g4" ControlToValidate="days_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
+                             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="days_field" ValidationGroup="g4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+          
+                                             </div>
                                        <div class="input-field col s6 ">
                                            <asp:TextBox ID="nights_field" runat="server" placeholder="Nights"  class="white-text"></asp:TextBox>
-                                       </div>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="g4" ControlToValidate="nights_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
+                         <asp:RegularExpressionValidator ID="RegularExpressionValidator4" ControlToValidate="nights_field" ValidationGroup="g4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
+                                                         </div>
                                   </div>    
                             
                             </div>   
                             <br />
-                            <asp:Button ID="duration_btn" runat="server" OnCommand="Update_Event" CommandArgument="duration_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                            <asp:Button ID="duration_btn" runat="server" ValidationGroup="g4" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="duration_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
                                &nbsp;
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />                   
@@ -194,9 +213,13 @@
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Limit"></asp:Label>
                                 <asp:TextBox id="limit_field" runat="server" class="white-text"></asp:TextBox>
-                            </div>   
+                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="g5" ControlToValidate="limit_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" ControlToValidate="limit_field" ValidationGroup="g5" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+ 
+                                        </div>   
                             <br />
-                            <asp:Button ID="limit_btn" runat="server" OnCommand="Update_Event" CommandArgument="limit_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                            <asp:Button ID="limit_btn" runat="server" ValidationGroup="g5" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="limit_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
                                &nbsp;
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />
@@ -210,9 +233,11 @@
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Date"></asp:Label>
                                 <asp:TextBox id="expiry_field" runat="server" class="white-text datepicker"></asp:TextBox>
+                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ValidationGroup="g6" ControlToValidate="expiry_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
                             </div>   
                             <br />
-                            <asp:Button ID="date_btn" runat="server" OnCommand="Update_Event" CommandArgument="expiry_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                            <asp:Button ID="date_btn" runat="server" ValidationGroup="g6" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="expiry_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
                                &nbsp;
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />                            
@@ -227,9 +252,12 @@
                             <div class="input-field">
                                 <asp:Label runat="server" class="white-text" Text="New Location"></asp:Label>
                                 <asp:TextBox id="location_field" runat="server" class="white-text"></asp:TextBox>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ValidationGroup="g7" ControlToValidate="location_field" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                   
+
                             </div>   
                             <br />
-                            <asp:Button ID="location_btn" runat="server" OnCommand="Update_Event" CommandArgument="location_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                            <asp:Button ID="location_btn" runat="server" ValidationGroup="g7" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="location_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
                                &nbsp;
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />                        

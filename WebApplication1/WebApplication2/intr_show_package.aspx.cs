@@ -18,9 +18,8 @@ namespace WebApplication2
             }
             string m = Request.QueryString["id"].ToString();
             Session["u_package_id"]= m;
-            Response.Redirect("show_package.aspx");   
-
-        
+            Response.Redirect("show_package.aspx");
+             
         }
     }
 }

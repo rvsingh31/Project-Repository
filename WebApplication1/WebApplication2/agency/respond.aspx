@@ -68,10 +68,11 @@
            <div class="input-field col s12 m12">
                <asp:Label ID="lds" runat="server" class="blue-text" Text="Mail the details to the customer"></asp:Label>
                <textarea id="mail" runat="server" class="teal-text materialize-textarea" ></textarea>
-                  
+                           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="g9" ControlToValidate="mail" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>      
+                       
            </div>
            <br />
-           <asp:Button runat="server" ID="mail_btn" OnClick="mail_btn_Click" CssClass="btn waves-effect waves-light blue white-text" Text="Send Mail"></asp:Button>
+           <asp:Button runat="server" ID="mail_btn" ValidationGroup="g9" UseSubmitBehavior="true" OnClick="mail_btn_Click" CssClass="btn waves-effect waves-light blue white-text" Text="Send Mail"></asp:Button>
         <br />
            <br />
        </div>

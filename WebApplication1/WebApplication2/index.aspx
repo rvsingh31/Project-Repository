@@ -9,7 +9,7 @@
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body class="blue lighten-4">
 
@@ -46,16 +46,20 @@
             <asp:Panel id="loginPanel" DefaultButton="login_btn" Runat="Server">	
 		           <div class="input-field">
                         <asp:Label ID="ulabel" runat="server" class="blue-text text-darken-2" Text="Username"></asp:Label>
-                        <asp:TextBox ID="uname" runat="server" class="blue-text text-darken-2"></asp:TextBox>
-                    </div>
+                        <asp:TextBox ID="uname" runat="server" class="blue-text text-darken-2"></asp:TextBox>  
+                       <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="uname" ValidationGroup="valgrp1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+
+		           </div>
                     <div class="input-field">
                         <asp:Label ID="plabel" runat="server" class="blue-text text-darken-2" Text="Password"></asp:Label>
                         <asp:TextBox ID="passwd" type="password" runat="server" class="blue-text text-darken-2"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="passwd" ValidationGroup="valgrp1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
                     </div>
-                    
-                     <br />
-        	
-                   <asp:Button ID="login_btn" runat="server" Text="Login" display="none" class="btn waves-effect waves-light blue darken-2 yellow-text" OnClick="login_btn_Click" />               
+                     
+        	<a href="reset.aspx" class="teal-text right">Forgot Password?</a>
+                <br />   
+                <br />
+                <asp:Button ID="login_btn" runat="server" Text="Login" display="none" ValidationGroup="valgrp1" UseSubmitBehavior="true" class="btn waves-effect waves-light blue darken-2 yellow-text" OnClick="login_btn_Click" />               
             </asp:Panel>
 
      
@@ -65,41 +69,51 @@
         <div class="input-field">
             <asp:Label ID="fnlbl" runat="server" class="blue-text text-darken-2" Text="First Name"></asp:Label>
             <asp:TextBox ID="fname" runat="server" class="blue-text text-darken-2"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="fname" ValidationGroup="valgrp2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
         </div>
                 
         <div class="input-field">
             <asp:Label ID="lnlbl" runat="server" class="blue-text text-darken-2" Text="Last Name"></asp:Label>
             <asp:TextBox ID="lname" runat="server" class="blue-text text-darken-2"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="lname" ValidationGroup="valgrp2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
         </div>
 
         <div class="input-field">
             <asp:Label ID="unlbl" runat="server" class="blue-text text-darken-2" Text="UserName"></asp:Label>
             <asp:TextBox ID="uname_r" runat="server" class="blue-text text-darken-2"></asp:TextBox>
-        </div>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="uname_r" ValidationGroup="valgrp2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+   </div>
 
         <div class="input-field">
             <asp:Label ID="passlbl" runat="server" class="blue-text text-darken-2" Text="Password"></asp:Label>
             <asp:TextBox ID="pass" Type="password" runat="server" class="blue-text text-darken-2"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="pass" ValidationGroup="valgrp2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
         </div>
 
         <div class="input-field">
             <asp:Label ID="repasslbl" runat="server" class="blue-text text-darken-2" Text="Password(Again)"></asp:Label>
             <asp:TextBox ID="repass" Type="password" runat="server" class="teal-text"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="repass" ValidationGroup="valgrp2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareValidator1" ControlToCompare="pass" ControlToValidate="repass" ValidationGroup="valgrp2" runat="server" ErrorMessage="Password doesn't match"></asp:CompareValidator>
         </div>
 
         <div class="input-field">
             <asp:Label ID="conlbl" runat="server" class="blue-text text-darken-2" Text="Contact"></asp:Label>
             <asp:TextBox ID="contact" runat="server" class="blue-text text-darken-2"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="contact" ValidationGroup="valgrp2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="contact" ValidationGroup="valgrp2" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
         </div>
 
         <div class="input-field">
             <asp:Label ID="maillbl" runat="server" class="blue-text text-darken-2" Text="Mail-id"></asp:Label>
             <asp:TextBox ID="mail" runat="server" class="blue-text text-darken-2"></asp:TextBox>
-        </div>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="mail" ValidationGroup="valgrp2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="mail" ValidationGroup="valgrp2" ValidationExpression="\w+([­+.']\w+)*@\w+([­.]\w+)*\.\w+([­.]\w+)*" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+       </div>
 
 
 
-               <asp:Button ID="register_btn" runat="server" Text="Register" class="btn waves-effect waves-light blue darken-2 yellow-text" OnClick="register_btn_Click"/>
+               <asp:Button ID="register_btn" runat="server" ValidationGroup="valgrp2" UseSubmitBehavior="true" Text="Register" class="btn waves-effect waves-light blue darken-2 yellow-text" OnClick="register_btn_Click"/>
             
         </div>
         

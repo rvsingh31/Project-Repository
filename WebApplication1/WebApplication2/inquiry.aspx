@@ -40,19 +40,22 @@
             <div class="input-field">
                 <asp:Label ID="l1" runat="server" class="white-text" Text="Desired Location"></asp:Label>
                 <asp:TextBox ID="location" runat="server" class="yellow-text"></asp:TextBox>
-            </div>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="location" ValidationGroup="v1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+             </div>
             <br />
             <div class="input-field">
                 <asp:Label ID="l2" runat="server" class="white-text" Text="Description"></asp:Label>
                 <asp:TextBox ID="description" runat="server" class="yellow-text"></asp:TextBox>
-            </div>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="description" ValidationGroup="v1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+          </div>
             <br />
              <div class="input-field">
                 <asp:Label ID="l3" runat="server" class="white-text" Text="Budget(Approximate)"></asp:Label>
                 <asp:TextBox ID="budget" runat="server" class="yellow-text"></asp:TextBox>
-            </div>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="budget" ValidationGroup="v1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+          </div>
             <br />
-            <asp:Button id="enq_button" runat="server" OnClick="enq_submit" class="btn waves-effect waves-light yellow blue-text" Text="Submit"></asp:Button>
+            <asp:Button id="enq_button" runat="server" OnClick="enq_submit" UseSubmitBehavior="true" ValidationGroup="v1" class="btn waves-effect waves-light yellow blue-text" Text="Submit"></asp:Button>
             <br />
             <br />
         </div>

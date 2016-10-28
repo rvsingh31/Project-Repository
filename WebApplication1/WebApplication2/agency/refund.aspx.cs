@@ -66,7 +66,7 @@ namespace WebApplication2.agency
                     r.Read();
                     string to = r["email"].ToString();
                     cc1.setCommand("select p_name from package_details where p_id="+p_id);
-                    SqlDataReader r1 = cc.getDDLResults();
+                    SqlDataReader r1 = cc1.getDDLResults();
                     r1.Read();
                     string package = r1["p_name"].ToString();
                     r1.Close();

@@ -192,6 +192,7 @@
     <Content Include="getstatus.aspx" />
     <Content Include="inquiry.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="reset.aspx" />
     <Content Include="ticket.aspx" />
     <Content Include="view.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -451,6 +452,13 @@
     </Compile>
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="reset.aspx.cs">
+      <DependentUpon>reset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reset.aspx.designer.cs">
+      <DependentUpon>reset.aspx</DependentUpon>
     </Compile>
     <Compile Include="ticket.aspx.cs">
       <DependentUpon>ticket.aspx</DependentUpon>

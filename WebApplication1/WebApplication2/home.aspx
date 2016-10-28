@@ -190,15 +190,18 @@
                                         <div class="row">
                                                 <div class="col s12 m6 input-field">
                                                     <asp:TextBox ID="fname_input" runat="server" class="blue-text" ></asp:TextBox>
-                                            <label for="fname_input">First Name</label>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="fname_input" ValidationGroup="vl1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                                    <label for="fname_input">First Name</label>
                                                 </div>
                                             <div class="col s12 m6 input-field">
                                                     <asp:TextBox ID="lname_input" runat="server" class="blue-text" ></asp:TextBox>
-                                         <label for="lname_input">First Name</label>
+                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="lname_input" ValidationGroup="vl1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                                   
+                                                <label for="lname_input">Last Name</label>
                                             </div>
                                             <br />
                                             <div class="center">
-                                            <asp:Button ID="name_bt" runat="server" OnCommand="Changes" CommandArgument="name" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
+                                            <asp:Button ID="name_bt" runat="server" ValidationGroup="vl1" UseSubmitBehavior="true" OnCommand="Changes" CommandArgument="name" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
                                                 &nbsp;
                                             <button type="reset" class="btn waves-effect waves-light yellow blue-text">CLEAR</button>
                                             </div>
@@ -210,9 +213,10 @@
                                         <br />
                                         <asp:Label ID="u_lbl" runat="server" class="blue-text">New Username</asp:Label>
                                         <asp:TextBox ID="username_input" runat="server"></asp:TextBox>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="username_input" ValidationGroup="vl2" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
                                         <br />
                                         <div class="center">
-                                            <asp:Button ID="username_bt" runat="server" OnCommand="Changes" CommandArgument="username" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
+                                            <asp:Button ID="username_bt" ValidationGroup="vl2" UseSubmitBehavior="true" runat="server" OnCommand="Changes" CommandArgument="username" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
                                                 &nbsp;
                                             <button type="reset" class="btn waves-effect waves-light yellow blue-text">CLEAR</button>
                                             </div>
@@ -223,9 +227,10 @@
                                         <br />
                                         <asp:Label ID="Label1" runat="server" class="blue-text">New Password</asp:Label>
                                         <asp:TextBox ID="password_input" type="password" runat="server"></asp:TextBox>
-                                        <br />
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="password_input" ValidationGroup="vl3" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                           <br />
                                         <div class="center">
-                                            <asp:Button ID="password_bt" runat="server" OnCommand="Changes" CommandArgument="password" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
+                                            <asp:Button ID="password_bt" runat="server" OnCommand="Changes" ValidationGroup="vl3" UseSubmitBehavior="true" CommandArgument="password" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
                                                 &nbsp;
                                             <button type="reset" class="btn waves-effect waves-light yellow blue-text">CLEAR</button>
                                             </div>
@@ -236,9 +241,11 @@
                                         <br />
                                         <asp:Label ID="Label2" runat="server" class="blue-text">New Contact</asp:Label>
                                         <asp:TextBox ID="contact_input" runat="server"></asp:TextBox>
-                                        <br />
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="contact_input" ValidationGroup="vl4" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="contact_input" ValidationGroup="vl4" ValidationExpression="^\d+$" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+                                          <br />
                                         <div class="center">
-                                            <asp:Button ID="contact_bt" runat="server" OnCommand="Changes" CommandArgument="contact" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
+                                            <asp:Button ID="contact_bt" runat="server" OnCommand="Changes" UseSubmitBehavior="true" ValidationGroup="vl4" CommandArgument="contact" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
                                                 &nbsp;
                                             <button type="reset" class="btn waves-effect waves-light yellow blue-text">CLEAR</button>
                                             </div>
@@ -249,9 +256,11 @@
                                         <br />
                                         <asp:Label ID="Label3" runat="server" class="blue-text">New ID</asp:Label>
                                         <asp:TextBox ID="email_input" runat="server"></asp:TextBox>
-                                        <br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="email_input" ValidationGroup="vl5" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                                              <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="email_input" ValidationGroup="vl5"  ValidationExpression="\w+([­+.']\w+)*@\w+([­.]\w+)*\.\w+([­.]\w+)*" runat="server" ErrorMessage="Entered field is not a number"></asp:RegularExpressionValidator>
+                                         <br />
                                         <div class="center">
-                                            <asp:Button ID="email_bt" runat="server" OnCommand="Changes" CommandArgument="email" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
+                                            <asp:Button ID="email_bt" runat="server" UseSubmitBehavior="true" ValidationGroup="vl5" OnCommand="Changes" CommandArgument="email" class="btn waves-effect waves-light yellow blue-text" Text="Change"></asp:Button>
                                                 &nbsp;
                                             <button type="reset" class="btn waves-effect waves-light yellow blue-text">CLEAR</button>
                                             </div>
