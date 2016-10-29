@@ -55,7 +55,9 @@
                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="passwd" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr1"></asp:RequiredFieldValidator> 
              
                     </div>
-                    
+                    <a href="reset.aspx" class="yellow-text right">Forgot Password?</a>
+                <br />   
+            
                      <br />
         	
                    <asp:Button ID="login_btn" runat="server" UseSubmitBehavior="true" ValidationGroup="vgr1" Text="Login" display="none" class="btn waves-effect waves-light white darken-2 blue-text" OnClick="login_btn_Click" />               

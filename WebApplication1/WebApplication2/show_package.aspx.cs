@@ -115,6 +115,7 @@ namespace WebApplication2
                                 if (flag1 == 1)
                                 {
                                     //FAILURE
+                                    Response.Redirect("home.aspx?m=Error occured!");
                                 }
                                 else
                                 {
@@ -145,6 +146,7 @@ namespace WebApplication2
                                     if(flag1==1)
                                     {
                                         //FAILURE
+                                        Response.Redirect("home.aspx?m=Error occured!");
                                     }
                                     else
                                     {
@@ -163,12 +165,14 @@ namespace WebApplication2
                             else
                             {
                                 //FAILURE
+                                Response.Redirect("home.aspx?m=Error occured!");
                             }
 
                         }
                         else
                         {
                             //FAILURE
+                            Response.Redirect("home.aspx?m=Error occured!");
                         }
                     }
                    else
@@ -208,11 +212,13 @@ namespace WebApplication2
                             else
                             {
                                 //FAILURE
+                                Response.Redirect("home.aspx?m=Error occured!");
                             }
                         }
                         else
                         {
                             //FAILURE
+                            Response.Redirect("home.aspx?m=Error occured!");
                         }
                         cc.closeConnection();
                     }
@@ -315,6 +321,7 @@ namespace WebApplication2
                                 if (flag1 == 1)
                                 {
                                     //FAILURE
+                                    Response.Redirect("home.aspx?m=Error occured!");
                                 }
                                 else
                                 {
@@ -345,6 +352,7 @@ namespace WebApplication2
                                     if (flag1 == 1)
                                     {
                                         //FAILURE
+                                        Response.Redirect("home.aspx?m=Error occured!");
                                     }
                                     else
                                     {
@@ -360,12 +368,14 @@ namespace WebApplication2
                             else
                             {
                                 //FAILURE
+                                Response.Redirect("home.aspx?m=Error occured!");
                             }
 
                         }
                         else
                         {
                             //FAILURE
+                            Response.Redirect("home.aspx?m=Error occured!");
                         }
 
 
@@ -408,11 +418,13 @@ namespace WebApplication2
                             else
                             {
                                 //FAILURE
+                                Response.Redirect("home.aspx?m=Error occured!");
                             }
                         }
                         else
                         {
                             //FAILURE
+                            Response.Redirect("home.aspx?m=Error occured!");
                         }
 
 
