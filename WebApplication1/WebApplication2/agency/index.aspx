@@ -55,7 +55,7 @@
                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="passwd" runat="server" ErrorMessage="Required Field" ValidationGroup="vgr1"></asp:RequiredFieldValidator> 
              
                     </div>
-                    <a href="reset.aspx" class="yellow-text right">Forgot Password?</a>
+                    <a href="../reset.aspx" class="yellow-text right">Forgot Password?</a>
                 <br />   
             
                      <br />

@@ -78,7 +78,6 @@
                </div>
 
                 <div id="step3_div" runat="server">
-                    <h6>Enter your new Password </h6>
                       
                     <div id="pass_tb" runat="server">
                         <asp:Label ID="l1" runat="server" Text="New Password" class="purple-text"></asp:Label>
