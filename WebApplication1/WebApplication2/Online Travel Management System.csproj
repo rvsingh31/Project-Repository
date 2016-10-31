@@ -183,6 +183,7 @@
     <Content Include="agency\logout.aspx" />
     <Content Include="agency\refund.aspx" />
     <Content Include="agency\respond.aspx" />
+    <Content Include="agency\settings.aspx" />
     <Content Include="agency\ticket.aspx" />
     <Content Include="App_Data\travel.mdf" />
     <Content Include="App_Data\travel_log.ldf">
@@ -414,6 +415,13 @@
     </Compile>
     <Compile Include="agency\respond.aspx.designer.cs">
       <DependentUpon>respond.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agency\settings.aspx.cs">
+      <DependentUpon>settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agency\settings.aspx.designer.cs">
+      <DependentUpon>settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="agency\ticket.aspx.cs">
       <DependentUpon>ticket.aspx</DependentUpon>

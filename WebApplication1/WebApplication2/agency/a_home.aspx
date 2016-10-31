@@ -21,16 +21,18 @@
         <a href="#!"><asp:Label ID="i_lbl" class="white-text left" runat="server" Text="Easy Travel"></asp:Label></a>   
         <ul class="right">
                 <li>
-                        <a href="#!" class="white-text"><asp:Label ID="a_lbl" runat="server" Text=""></asp:Label></a>
-                 
+                        <a href="#!" class="white-text"><asp:Label ID="a_lbl" runat="server" Text=""></asp:Label></a>  
                 </li>
+            <li>
+                                     <a href="settings.aspx" class="white-text">Account Settings</a>  
+            </li>
                <li>
                   <a href="logout.aspx" class="white-text">Log Out</a>
                  
                </li>
            </ul>
     </nav>
-           <asp:Label runat="server" class="blue-text text-lighten-4" id="error_lbl" Text=""></asp:Label>
+               <asp:Label runat="server" class="blue-text text-lighten-4" id="error_lbl" Text=""></asp:Label>
 
     <br />
     <br />

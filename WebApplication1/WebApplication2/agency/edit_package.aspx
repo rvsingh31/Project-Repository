@@ -61,6 +61,7 @@
                  <li class="limit_li"><a  class="change limit white-text">Limit of Customers</a></li>
                  <li class="expiry_li"><a  class="change expiry white-text"> Trip Date</a></li>
                  <li class="location_li"><a  class="change location white-text">Location</a></li>
+                <li class="image_li"><a  class="change image white-text">Image</a></li>
                 
     </ul>
 	
@@ -79,7 +80,7 @@
                  <li class="limit_li"><a  class="change limit white-text">Limit of Customers</a></li>
                  <li class="expiry_li"><a  class="change expiry white-text"> Trip Date</a></li>
                  <li class="location_li"><a  class="change location white-text">Location</a></li>
-              
+                <li class="image_li"><a  class="change image white-text">Image</a></li>             
     
 	</ul>
     </div>
@@ -262,6 +263,35 @@
                             <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
                             <br />                        
                         </div>
+                    
+                    <div class="" id="image" style="display:none">
+                        <h6 class="white-text center text-lighten-1">Change your Package Image</h6>                    
+                               <br />
+                        <div class="row">
+                        <div class="col s12 m6">
+                            <img id="current_image"  src="<%=img_link %>" />
+                                
+                        </div>
+                            <br />
+                             <div class="col s12 m6 ">
+                              <asp:Label runat="server" Text="Upload New Image (Only JPEG accepted)" class="white-text"></asp:Label>
+                              <br />
+                            <asp:FileUpload runat="server" ID="f1" ></asp:FileUpload>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" ValidationGroup="g8" ControlToValidate="f1" runat="server" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                           
+                                  <br />
+                              <br />
+                              </div>
+                                <br />
+                            <asp:Button ID="Button1" runat="server" ValidationGroup="g8" UseSubmitBehavior="true" OnCommand="Update_Event" CommandArgument="image_div"  class="btn waves-effect waves-light white teal-text" Text="Change"></asp:Button>
+                               &nbsp;
+                            <button type="reset" class="btn waves-effect waves-light white teal-text">CLEAR</button>
+                            <br />  
+                            </div>
+
+                 </div>
+
+
 
                    
             </div>
@@ -350,6 +380,15 @@
             }, 500);
         });
 
+        $(document).on('click', '.image', function () {
+            clear_area();
+            setTimeout(function () {
+                $("#image").fadeIn();
+                $(".image_li").addClass('active');
+            }, 500);
+        });
+
+
         function clear_area() {
             $(document).ready(function () {
 
@@ -387,6 +426,12 @@
                     $(".location_li").removeClass('active');
 
                 }
+                else if ($("#image").is(':visible')) {
+                    $("#image").fadeOut();
+                    $(".image_li").removeClass('active');
+
+                }
+
             });
             
         }
