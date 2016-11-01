@@ -101,10 +101,11 @@ namespace WebApplication2
             }
             r.Close();
 
-            string today = System.DateTime.Today.ToString();
-            today.Split('/');
-            int c_m = (Int32.Parse(today[0].ToString()) * 10) + Int32.Parse(today[1].ToString());
-            int c_d = (Int32.Parse(today[3].ToString()) * 10) + Int32.Parse(today[4].ToString());
+            System.DateTime today = System.DateTime.Today;
+            int c_m = today.Month;
+            int c_d = today.Day;
+           // int c_m = (Int32.Parse(today[0].ToString()) * 10) + Int32.Parse(today[1].ToString());
+           // int c_d = (Int32.Parse(today[3].ToString()) * 10) + Int32.Parse(today[4].ToString());
             cc.setCommand("select p_name,p_id,expiry_date from package_details where p_id in (select p_id from booked_packages where user_id=@p and status=@st)");
             cc.setParameter("@p",Session["id"].ToString());
             cc.setParameter("@st","booked");

@@ -161,6 +161,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.png" />
+    <Content Include="2.png" />
+    <Content Include="3.png" />
+    <Content Include="4.png" />
+    <Content Include="5.png" />
+    <Content Include="6.png" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -176,6 +182,16 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="admin\admin.jpg" />
+    <Content Include="admin\admin_loginpage.aspx" />
+    <Content Include="admin\agency.jpg" />
+    <Content Include="admin\ag_reg_pack.aspx" />
+    <Content Include="admin\a_home.aspx" />
+    <Content Include="admin\delete_agency.aspx" />
+    <Content Include="admin\delete_packages.aspx" />
+    <Content Include="admin\delete_users.aspx" />
+    <Content Include="admin\disp_users.aspx" />
+    <Content Include="admin\user.jpg" />
     <Content Include="agency\index.aspx" />
     <Content Include="agency\a_home.aspx" />
     <Content Include="agency\intr_sess.aspx" />
@@ -191,8 +207,10 @@
     </Content>
     <Content Include="agency\details.aspx" />
     <Content Include="getstatus.aspx" />
+    <Content Include="IMG_3233.JPG" />
     <Content Include="inquiry.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="my_image.jpg" />
     <Content Include="reset.aspx" />
     <Content Include="reset_mail.aspx" />
     <Content Include="ticket.aspx" />
@@ -366,6 +384,55 @@
     </Compile>
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_loginpage.aspx.cs">
+      <DependentUpon>admin_loginpage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admin_loginpage.aspx.designer.cs">
+      <DependentUpon>admin_loginpage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ag_reg_pack.aspx.cs">
+      <DependentUpon>ag_reg_pack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ag_reg_pack.aspx.designer.cs">
+      <DependentUpon>ag_reg_pack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\a_home.aspx.cs">
+      <DependentUpon>a_home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\a_home.aspx.designer.cs">
+      <DependentUpon>a_home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\delete_agency.aspx.cs">
+      <DependentUpon>delete_agency.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\delete_agency.aspx.designer.cs">
+      <DependentUpon>delete_agency.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\delete_packages.aspx.cs">
+      <DependentUpon>delete_packages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\delete_packages.aspx.designer.cs">
+      <DependentUpon>delete_packages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\delete_users.aspx.cs">
+      <DependentUpon>delete_users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\delete_users.aspx.designer.cs">
+      <DependentUpon>delete_users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\disp_users.aspx.cs">
+      <DependentUpon>disp_users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\disp_users.aspx.designer.cs">
+      <DependentUpon>disp_users.aspx</DependentUpon>
     </Compile>
     <Compile Include="agency\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

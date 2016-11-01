@@ -8,6 +8,9 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Web.Configuration;
 using System.Web.SessionState;
+using System.Net.Mail;
+using System.Net;
+using System.IO;
 
 namespace WebApplication2
 {
@@ -105,6 +108,42 @@ namespace WebApplication2
                     Response.Redirect("index.aspx?m=Error Occured ! Try again later");
                 }
             conn.Close();
+
+        }
+
+        private void sendEmailViaWebApi(string body)
+        {
+            string from = "ownerofmysite@gmail.com";
+            string to = from;
+            using (MailMessage mm = new MailMessage(from, to))
+            {
+                mm.Subject = "Improvisation Suggestions By Custemers";
+                mm.Body = body;
+                mm.IsBodyHtml = false;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.EnableSsl = true;
+                NetworkCredential NetworkCred = new NetworkCredential(from, "splitwise");
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = NetworkCred;
+                smtp.Port = 587;
+                smtp.Send(mm);
+            }
+
+        }
+
+        protected void send_btn_Click(object sender, EventArgs e)
+        {
+            string body = improve.InnerText;
+            if(body=="")
+            {
+                Response.Redirect("index.aspx?Please specify the contents to be mailed!!");
+            }
+            else
+            {
+                sendEmailViaWebApi(body);
+                Response.Redirect("index.aspx?m=Response Recorded!");
+            }
 
         }
     }
