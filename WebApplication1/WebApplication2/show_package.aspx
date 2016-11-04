@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+     <link href="Scripts/pageguide.min.css" rel="stylesheet" />
+
   <style>
       #status_div:hover{
           cursor:pointer;
@@ -78,7 +80,7 @@
                                      </div>
                                  </div>
 
-                                 <div class="card-action yellow lighten-4">
+                                 <div class="card-action yellow lighten-4 one">
                                   
                                        <h6 class="center" id="status_div">
                                                     <%if (save == "")
@@ -122,13 +124,13 @@
                     <br />
                     <br />
 
-                     <div class="col s12 center">
-                            <h6 class="teal-text "><strong>Trip Date:</strong></h6>
+                     <div class="col s12 center two">
+                            <h6 class="teal-text"><strong>Trip Date:</strong></h6>
                             <h6 class="blue-text dont-break-out" id="pe" runat="server"></h6>
                      </div>
                     <br />
                     <br />
-                     <div class="col s12 center">
+                     <div class="col s12 center three">
                          <br />
                             <h6 class="teal-text "><strong>This Package is provided by:</strong></h6>
                             <h6 class="blue-text dont-break-out" id="an" runat="server"></h6>
@@ -150,7 +152,7 @@
                 <div class="col s12 m1">
                     <p></p>
                 </div>
-                <div class="col s12 m7 card-panel" >
+                <div class="col s12 m7 card-panel four" >
                     <h6 class="teal-text center"><strong>BOOK NOW</strong></h6>
                     <br />
                 <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">              
@@ -280,6 +282,33 @@
         </div>
          
     </form>
+
+      <ul id="tlyPageGuide" class="pg1" data-tourtitle="Page Elements Explained!">
+      <li class="tlypageguide_right" data-tourtarget=".one">
+        <div>
+            Here ,you can see a SAVE Button .It's use is similar to that of STARRED PLACES in other websites.You can save this place and later on when you visit the website,You can directly come to 
+            this package from your HISTORY/STARRED-PLACES section.
+        </div>
+      </li>
+      <li class="tlypageguide_right" data-tourtarget=".two">
+        <div>
+            This is the date when this trip is scheduled.
+        </div>
+      </li>
+      <li class="tlypageguide_right" data-tourtarget=".three">
+        <div>
+            This package is provided to you by the mentioned agency.We are giving you all the details for the agency ,you can contact them for further information .
+        </div>
+      </li>
+      <li class="tlypageguide_right" data-tourtarget=".four">
+        <div>
+            This is the section where you can book the package by providing the asked details.
+       </div>
+      </li>
+      
+    </ul>
+
+
 
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -444,6 +473,14 @@
             return check(x,y);
         }
      
+    </script>
+
+    <script src="Scripts/pageguide.min.js"></script>
+                
+    <script>
+        jQuery(document).ready(function () {
+          var pageguide=  tl.pg.init();
+        });
     </script>
 </body>
 </html>

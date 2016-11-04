@@ -5,11 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>HOME</title>
+  
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link href="Scripts/pageguide.min.css" rel="stylesheet" />
+
+
     <style>
         .wrap_text {
             overflow: hidden;
@@ -37,7 +41,7 @@
   <nav class="white">
     <div class="nav-wrapper">
 		<ul class="right">
-			<li><a href="#" class="purple-text ">Easy travel</a></li>
+			<li><a href="#" class="purple-text">Easy travel</a></li>
 		</ul>
 		<a href="#" data-activates="mobile-demo" class="button-collapse purple-text"><i class="material-icons">menu</i></a>
       
@@ -46,11 +50,11 @@
         <h5 class="teal-text">Easy-Travel</h5>
        </li>
            <li><br /></li>
-           <li class="center"><a class=" blue-text text-darken-1" href="#!"><%=vtr %></a></li>
-            <li class="active li_home"><a class="home blue-text text-darken-1" href="#!">Home</a></li>
-		<li class="li_search"> <a  class=" search blue-text text-darken-1"  href="#!">Search Packages</a></li>
-        <li class="li_star"><a  class="star blue-text text-darken-1" href="#!">History</a></li>
-        <li class="li_account"><a  class="account blue-text text-darken-1" href="#!">Account Settings</a></li>
+           <li class="one center"><a class=" blue-text text-darken-1" href="#!"><%=vtr %></a></li>
+            <li class="two active li_home"><a class="home blue-text text-darken-1" href="#!">Home</a></li>
+		<li class="three li_search"> <a  class=" search blue-text text-darken-1"  href="#!">Search Packages</a></li>
+        <li class="four li_star"><a  class="star blue-text text-darken-1" href="#!">History</a></li>
+        <li class="five li_account"><a  class="account blue-text text-darken-1" href="#!">Account Settings</a></li>
 		<li><a  class="blue-text text-darken-1" href="logout.aspx">Sign Out</a></li>
     </ul>
 	
@@ -417,6 +421,9 @@
                             <p class="teal-text"><i>NOTE:</i> The following packages have been already cancelled and displayed here only because the refund is being processed.
                                 As soon as the refund is complete, the corresponding package's cancellation process will be complete .
                             </p>
+                            <p class="teal-text">
+                                A package cancellation can only be possible if the difference of current date and trip date is minimum one month.
+                            </p>
                             <br />
                             <div class="collection">
                             <% if (ar5.Count != 0)
@@ -441,16 +448,52 @@
                 </div>
                        
             </div>
-      
+     
           
     </main>
     </form>
 
+     <ul id="tlyPageGuide" class="pg1" data-tourtitle="How the Website Works">
+      <li class="tlypageguide_right" data-tourtarget=".one">
+        <div>
+          Welcome to our Web-App, take this tour to be familirized with it.There are various sections in our Website. Let's explore them one by one.
+        </div>
+      </li>
+      <li class="tlypageguide_right" data-tourtarget=".two">
+        <div>
+         HOME- This section is where you'll get a display of various tour packages provided by various agencies , which are new and shown to you according to their availability.
+        </div>
+      </li>
+      <li class="tlypageguide_right" data-tourtarget=".three">
+        <div>
+         SEARCH- We know it may be tiresome work to dig the tour which you are interested so here is a search section which allows you to search your desired package on the basis of the place which you want to visit.
+        </div>
+      </li>
+      <li class="tlypageguide_right" data-tourtarget=".four">
+        <div>
+        HISTORY-  This section is where your booked package details and the cancellation details (if any) are displayed ,so you can keep a track of trips which you have made or are about to make!
+                There are three sub sections : History,Starred Places,Cancellations.
+                In History ,your current booked packages are shown which can be cancelled accordingly.
+                In Starred Places,are the packages which you have saved while browsing through packages.
+                In Cancelleations, a block is live only till you get your refund and then that live block is deleted.
+        </div>
+      </li>
+       <li class="tlypageguide_right" data-tourtarget=".five">
+        <div>
+        ACCOUNT SETTINGS-  This section is where you can change your account details as in name,username,password etc.
+        </div>
+      </li>
+       
+    </ul>
+
+     
 
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <script>
+
+
+      <script>
 
 
         var x = document.getElementById("msg").innerHTML;
@@ -569,8 +612,7 @@
                     $(".password_div").fadeOut();
                 }
                 else if($(".contact_div").is(":visible"))
-                {
-                    $(".contact_div").fadeOut();
+                {    $(".contact_div").fadeOut();
                 }
                 else if($(".mail_div").is(":visible"))
                 {
@@ -583,6 +625,14 @@
 
 
     </script>
+    <script src="Scripts/pageguide.min.js"></script>
+                
+    <script>
+        jQuery(document).ready(function () {
+          var pageguide=  tl.pg.init();
+        });
+    </script>
+
        
    
 </body>

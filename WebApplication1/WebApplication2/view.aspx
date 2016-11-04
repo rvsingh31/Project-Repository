@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <style>
+  <link href="Scripts/pageguide.min.css" rel="stylesheet" />
+
+     <style>
 
       .dont-break-out {
 
@@ -129,7 +131,7 @@
                 </div>
                 <div class="col s12 m6">
                     <div class="row">
-                                <div class="col s12 card-panel">
+                                <div class="col s12 card-panel one">
                                       <h6 class="blue-text">Details about your Booking</h6>                     
                                       <br />
                                        <h6 class="teal-text">E-Ticket Id: <span class="blue-text" id="eticket_span" runat="server"></span></h6>
@@ -159,7 +161,7 @@
                      <div class="row">
                           
                         <div class="center">
-                              <asp:Button href="#cancel_modal" class="btn modal-trigger white blue-text center waves-effect waves-light" runat="server" Text="Cancel Package"></asp:Button>
+                              <asp:Button href="#cancel_modal" class="three btn modal-trigger white blue-text center waves-effect waves-light" runat="server" Text="Cancel Package"></asp:Button>
                         
                        </div>
                      </div>
@@ -170,7 +172,7 @@
                    <div class="row">
                         <br />
                         <div class="center">
-                              <a href="ticket.aspx?eticket_id=<%=et %>" class="btn white blue-text waves-effect waves-light" >Download E-Ticket</a>
+                              <a href="ticket.aspx?eticket_id=<%=et %>" class="two btn white blue-text waves-effect waves-light" >Download E-Ticket</a>
                         </div>
                      
                     </div>
@@ -199,6 +201,33 @@
          
     </form>
 
+    <ul id="tlyPageGuide" class="pg1" data-tourtitle="Page Elements Explained!">
+     
+      <li class="tlypageguide_right" data-tourtarget=".one">
+        <div>
+            The mentioned are your booking details which includes your eticket-id,family members details and trip cost etc.
+        </div>
+      </li>
+      <li class="tlypageguide_right" data-tourtarget=".two">
+        <div>
+                    You are required to download the E-TICKET which is to be produced whenever asked during the trip.You can download it here.
+        </div>
+      </li>
+       <%if (cancel=="yes") {
+                            %>
+        <li class="tlypageguide_right" data-tourtarget=".three">
+        <div>
+       By clicking on this button , your package cancellation process will begin and you'll be notified about the process through mail and after the refund is complete ,you'll be notified accordingly.
+        </div>
+      </li>
+      
+
+            <%  }   %> 
+      
+    </ul>
+
+
+
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
@@ -221,5 +250,14 @@
 
      
     </script>
+
+    <script src="Scripts/pageguide.min.js"></script>
+                
+    <script>
+        jQuery(document).ready(function () {
+          var pageguide=  tl.pg.init();
+        });
+    </script>
+
 </body>
 </html>

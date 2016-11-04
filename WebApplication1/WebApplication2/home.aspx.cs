@@ -104,6 +104,7 @@ namespace WebApplication2
             System.DateTime today = System.DateTime.Today;
             int c_m = today.Month;
             int c_d = today.Day;
+            int c_y = today.Year;
            // int c_m = (Int32.Parse(today[0].ToString()) * 10) + Int32.Parse(today[1].ToString());
            // int c_d = (Int32.Parse(today[3].ToString()) * 10) + Int32.Parse(today[4].ToString());
             cc.setCommand("select p_name,p_id,expiry_date from package_details where p_id in (select p_id from booked_packages where user_id=@p and status=@st)");
@@ -119,15 +120,27 @@ namespace WebApplication2
                 exp_date.Split('/');
                 int d = (Int32.Parse(exp_date[0].ToString()) * 10) + Int32.Parse(exp_date[1].ToString());
                 int m = (Int32.Parse(exp_date[3].ToString()) * 10) + Int32.Parse(exp_date[4].ToString());
-
-                if ((m - c_m) < 1)
+                int y= (Int32.Parse(exp_date[6].ToString()) * 1000) + (Int32.Parse(exp_date[7].ToString())*100)+(Int32.Parse(exp_date[8].ToString()) * 10) + Int32.Parse(exp_date[9].ToString());
+                if(c_y==y)
                 {
-                    ar4.Add("display:none");
+                    if ((m - c_m) < 1)
+                    {
+                        ar4.Add("display:none");
+                    }
+                    else
+                    {
+                        ar4.Add("");
+                    }
                 }
-                else
+                else if(c_y < y)
                 {
                     ar4.Add("");
                 }
+                else
+                {
+                    ar4.Add("display:none");
+                }
+
             }
 
             rw.Close();
