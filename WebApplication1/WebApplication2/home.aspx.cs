@@ -85,7 +85,7 @@ namespace WebApplication2
             rdr.Close();
 
 
-            cc.setCommand("select package_details.p_id,package_details.p_name,package_details.p_description,package_details.cost_adult,package_details.duration,uploads.data from package_details join uploads on (package_details.image_id=uploads.Id)");
+            cc.setCommand("select TOP 5 package_details.p_id,package_details.p_name,package_details.p_description,package_details.cost_adult,package_details.duration,uploads.data from package_details join uploads on (package_details.image_id=uploads.Id)");
             SqlDataReader r =cc.getDDLResults();
             ar2 = new ArrayList();
             while (r.Read())

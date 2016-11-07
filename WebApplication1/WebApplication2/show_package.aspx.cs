@@ -739,24 +739,11 @@ namespace WebApplication2
                          tb.ID = "child_input" + (i + 1);
                          tb.CssClass = "blue-text";
 
-                         RequiredFieldValidator reqFieldVal = new RequiredFieldValidator();
-                         reqFieldVal.ControlToValidate = "child_input" + (i + 1);
-                         reqFieldVal.SetFocusOnError = true;
-                         reqFieldVal.ErrorMessage = "Required";
-                         reqFieldVal.EnableClientScript = false;
-                         reqFieldVal.CssClass = "required";
-                         reqFieldVal.ValidationGroup = "vg1";
-                         reqFieldVal.Enabled = true;
-
-
                          UpdatePanel1.ContentTemplateContainer.Controls.Add(lb);
                          UpdatePanel1.ContentTemplateContainer.Controls.Add(tb);
-                         UpdatePanel1.ContentTemplateContainer.Controls.Add(reqFieldVal);
 
                          ph1.Controls.Add(lb);
                          ph1.Controls.Add(tb);
-                         ph1.Controls.Add(reqFieldVal);
-                         reqFieldVal.Validate();
                      }
                  }
 

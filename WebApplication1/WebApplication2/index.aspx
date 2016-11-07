@@ -306,8 +306,9 @@ img {
                   </div>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="yellow-text">Sign-Up for News-Letter</h5>
-                
+                  <h5 class="yellow-text">Company Bio</h5>
+                   <p class="yellow-text text-lighten-2">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+        
               </div>
             </div>
           </div>
