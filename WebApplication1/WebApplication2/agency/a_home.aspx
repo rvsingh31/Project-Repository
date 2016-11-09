@@ -360,7 +360,7 @@
                                     <div class="col s12 m4 card-panel  hoverable">
                                         <br />
                                         <a href="intr_sess.aspx?id=<%=ar2[q] %>&name=<%=ar1[q] %>"><h6 class="blue-text center"><%= ar1[q] %></h6></a>
-                                        <h6 class="red-text darken-1 right">Remove</h6>
+                                        <a href="remove.aspx?id=<%=ar2[q] %>"><h6 class="red-text darken-1 right">Remove</h6></a>
                                     </div>
                                     
                                    <div class="col s12 m1 ">

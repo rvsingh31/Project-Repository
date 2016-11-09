@@ -31,7 +31,7 @@ namespace WebApplication2.agency
             }
             else
             {
-                Response.Redirect("/agency/index.aspx?msg=Log in to Continue..");
+                Response.Redirect("/agency/default.aspx?msg=Log in to Continue..");
             }
 
             string str2 = Request.QueryString["m"];

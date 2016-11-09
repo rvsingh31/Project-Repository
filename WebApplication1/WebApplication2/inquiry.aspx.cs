@@ -17,7 +17,7 @@ namespace WebApplication2
         {
             if(Session["id"]==null)
             {
-                Response.Redirect("index.aspx?m=Login First!!");
+                Response.Redirect("default.aspx?m=Login First!!");
             }
             
         }

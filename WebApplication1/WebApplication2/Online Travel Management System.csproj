@@ -192,12 +192,13 @@
     <Content Include="admin\delete_users.aspx" />
     <Content Include="admin\disp_users.aspx" />
     <Content Include="admin\user.jpg" />
-    <Content Include="agency\index.aspx" />
+    <Content Include="agency\default.aspx" />
     <Content Include="agency\a_home.aspx" />
     <Content Include="agency\intr_sess.aspx" />
     <Content Include="agency\edit_package.aspx" />
     <Content Include="agency\logout.aspx" />
     <Content Include="agency\refund.aspx" />
+    <Content Include="agency\remove.aspx" />
     <Content Include="agency\respond.aspx" />
     <Content Include="agency\settings.aspx" />
     <Content Include="agency\ticket.aspx" />
@@ -239,7 +240,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
-    <Content Include="index.aspx" />
+    <Content Include="default.aspx" />
     <Content Include="home.aspx" />
     <Content Include="file_test.aspx" />
     <Content Include="ajax_test.aspx" />
@@ -450,12 +451,12 @@
     <Compile Include="admin\disp_users.aspx.designer.cs">
       <DependentUpon>disp_users.aspx</DependentUpon>
     </Compile>
-    <Compile Include="agency\index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="agency\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="agency\index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="agency\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="agency\a_home.aspx.cs">
       <DependentUpon>a_home.aspx</DependentUpon>
@@ -491,6 +492,13 @@
     </Compile>
     <Compile Include="agency\refund.aspx.designer.cs">
       <DependentUpon>refund.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agency\remove.aspx.cs">
+      <DependentUpon>remove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agency\remove.aspx.designer.cs">
+      <DependentUpon>remove.aspx</DependentUpon>
     </Compile>
     <Compile Include="agency\respond.aspx.cs">
       <DependentUpon>respond.aspx</DependentUpon>
@@ -608,12 +616,12 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>

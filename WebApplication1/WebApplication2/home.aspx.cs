@@ -57,7 +57,7 @@ namespace WebApplication2
             }
             else
             {
-                Response.Redirect("index.aspx?msg=Log in to Continue..");
+                Response.Redirect("default.aspx?msg=Log in to Continue..");
             }
             ar3 = new ArrayList();
                 msg=Request.QueryString["m"];

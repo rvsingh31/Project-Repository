@@ -135,12 +135,12 @@ namespace WebApplication2
                 }
                 else
                 {
-                    Response.Redirect("index.aspx?m=Error occured!");
+                    Response.Redirect("default.aspx?m=Error occured!");
                 }
             }
             else
             {
-                Response.Redirect("index.aspx?m=Error occured!");
+                Response.Redirect("default.aspx?m=Error occured!");
             }
         }
 
@@ -160,7 +160,7 @@ namespace WebApplication2
                     }
                     else
                     {
-                        Response.Redirect("index.aspx?m=Error occured!");
+                        Response.Redirect("default.aspx?m=Error occured!");
                     }
 
                     err2.Text = "";
@@ -181,16 +181,16 @@ namespace WebApplication2
                         int b = cc2.getDMLResults();
                         if (b > 0)
                         {
-                            Response.Redirect("index.aspx?m=Password Changed Successfully");
+                            Response.Redirect("default.aspx?m=Password Changed Successfully");
                         }
                         else
                         {
-                            Response.Redirect("index.aspx?m=Error Occured! Try Again");
+                            Response.Redirect("default.aspx?m=Error Occured! Try Again");
                         }
                     }
                     else
                     {
-                        Response.Redirect("index.aspx?m=Error Occured! Try Again");
+                        Response.Redirect("default.aspx?m=Error Occured! Try Again");
                     }
                 }
                 else

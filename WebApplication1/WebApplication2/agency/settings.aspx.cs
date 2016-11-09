@@ -19,7 +19,7 @@ namespace WebApplication2.agency
             
             if(Session["agency_id"]==null)
             {
-                Response.Redirect("index.aspx?m=Login First!!");
+                Response.Redirect("default.aspx?m=Login First!!");
             }
 
             if(Request.QueryString["m"]!=null)

@@ -42,7 +42,7 @@ namespace WebApplication2.agency
         {
             if(Session["agency_id"]==null)
             {
-                Response.Redirect("index.aspx?m=Login to Continue..");
+                Response.Redirect("default.aspx?m=Login to Continue..");
             }
 
             if (Request.QueryString["p_id"] != null && Request.QueryString["user_id"] != null) 

@@ -650,7 +650,7 @@ namespace WebApplication2
             ct_ch = 0;
             if(Session["id"]==null)
             {
-                Response.Redirect("index.aspx?m=Login First!!");
+                Response.Redirect("default.aspx?m=Login First!!");
             }
 
            
